@@ -35,7 +35,7 @@
   
   <p>
     <%= f.label :host %><br>
-    <%= f.text_field :host %>
+    <%= f.select :host, options_for_select(User.all.map{|u|[u.handle, u.id]}) %>
   </p>
   
   <p>

@@ -20,7 +20,9 @@
 
 <p>
   <h2>Host: </h2>
-  <%= @event.host %>
+  <%= @event.user.handle %>
 </p>
 
-<%= link_to 'Back', events_path %>
+<p>
+  <%= link_to 'Back', events_path %>
+</p>

@@ -1,0 +1,23 @@
+<p>
+  <h2>Fullname: </h2>
+  <%= @user.fullname %>
+</p>
+
+<p>
+  <h2>Handle: </h2>
+  <%= @user.handle %>
+</p>
+
+<p>
+  <h2>Email: </h2>
+  <%= @user.email %>
+</p>
+
+<p>
+  <h2>Events: </h2>
+  <%= render :template => 'events/_table' %>
+</p>
+
+<p>
+  <%= link_to 'Back', users_path %>
+</p>
