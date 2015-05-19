@@ -1,11 +1,16 @@
 class UsersController < ApplicationController
+  protect_from_forgery with: :null_session
+  respond_to :html, :json
+  
   def index
     @users = User.all
+    respond_with(@users)
   end
   
   def show
     @user = User.find(params[:id])
     @events = @user.events
+    respond_with(@user)
   end
   
   def new
@@ -19,11 +24,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     
-    if @user.save
-      redirect_to @user
-    else
-      render 'new'
-    end
+    @user.save
+    respond_with(@user)
   end
   
   def update
@@ -39,7 +41,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     
-    redirect_to users_path
+    respond_to do |format|
+      format.html {redirect_to users_path}
+      format.json {render json: {}, status: :ok}
+    end
   end
   
   private

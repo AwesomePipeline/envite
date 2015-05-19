@@ -1,10 +1,15 @@
 class EventsController < ApplicationController
+  protect_from_forgery with: :null_session
+  respond_to :html, :json
+  
   def index
     @events = Event.all
+    respond_with(@events)
   end
   
   def show
     @event = Event.find(params[:id])
+    respond_with(@event)
   end
   
   def new
@@ -18,11 +23,8 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     
-    if @event.save
-      redirect_to @event
-    else
-      render 'new'
-    end
+    @event.save
+    respond_with(@event)
   end
   
   def update

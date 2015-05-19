@@ -6,8 +6,7 @@
 class User < ActiveRecord::Base
   # Model Relationships
   # ===================
-  has_many :events, :foreign_key => :host,
-    dependent: :destroy
+  has_many :events, :foreign_key => :host
     
   # Validation Rules
   # ================

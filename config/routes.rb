@@ -1,10 +1,22 @@
 Rails.application.routes.draw do
   
   root 'landing#index'
-
+  
+  # Routing for scaffolding GUI
+  # ===========================
   resources :events
   resources :users do
-    resources :events
+    resources :events, shallow: true
+  end
+  
+  # Routing for API
+  # ===================
+  # Routes /api to Events & Users controllers
+  scope '/api', :defaults => {:format => 'json'} do
+    resources :events, only: [:index, :show, :create, :update, :destroy]
+    resources :users do
+      resources :events, shallow: true
+    end
   end
   
   # The priority is based upon order of creation: first created -> highest priority.
