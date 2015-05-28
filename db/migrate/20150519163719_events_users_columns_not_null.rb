@@ -11,6 +11,5 @@ class EventsUsersColumnsNotNull < ActiveRecord::Migration
     
     change_column_null :users, :fullname, false
     change_column_null :users, :handle, false
-    change_column_null :users, :email, false
   end
 end

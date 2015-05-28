@@ -1,12 +1,12 @@
-# User model containing the following columns:
-# fullname (string)
-# handle (string, unique, 6-12 length)
-# email (string, unique, valid_email)
-
 class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
   # Model Relationships
   # ===================
-  has_many :events, :foreign_key => :host
+  has_many :events, foreign_key: :host
+  has_many :notifications, foreign_key: :target
     
   # Validation Rules
   # ================
@@ -18,4 +18,6 @@ class User < ActiveRecord::Base
   # TODO: More robust email validator?
   validates :email, presence: true, uniqueness: true,
     format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}
+  validates :password, presence: true
+  validates :password_confirmation, presence: true
 end

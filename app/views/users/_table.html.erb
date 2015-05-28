@@ -1,0 +1,24 @@
+<table class="table table-striped">
+  <tr>
+    <th>ID</th>
+    <th>Fullname</th>
+    <th>Handle</th>
+    <th>Email</th>
+    <th>Hosted Events</th>
+    <th class="text-center" colspan="3">Actions</th>
+  </tr>
+  
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.id %></td>
+      <td><%= user.fullname %></td>
+      <td><%= user.handle %></td>
+      <td><%= user.email %></td>
+      <td><center><%= user.events.count %></center></td>
+      <td><%= link_to 'Show', user_path(user) %></td>
+      <td><%= link_to 'Edit', edit_user_path(user) %></td>
+      <td><%= link_to 'Destroy', user_path(user), method: :delete,
+      data: {confirm: 'Are you sure?'} %></td>
+    </tr>
+  <% end %>
+</table>

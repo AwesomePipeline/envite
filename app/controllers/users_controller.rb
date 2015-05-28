@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  protect_from_forgery with: :null_session
-  respond_to :html, :json
+  protect_from_forgery with: :exception
+  respond_to :html
   
   def index
     @users = User.all
@@ -41,15 +41,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     
-    respond_to do |format|
-      format.html {redirect_to users_path}
-      format.json {render json: {}, status: :ok}
-    end
+    redirect_to users_path
   end
   
   private
     def user_params
-      params.require(:user).permit(
-      :fullname, :email, :handle)
+      params.require(:user).permit(:email, :fullname, :handle, :password, :password_confirmation)
     end
 end

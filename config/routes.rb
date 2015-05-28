@@ -1,21 +1,74 @@
 Rails.application.routes.draw do
   
+  # [DEV] Root temporary landing page
+  # =================================
   root 'landing#index'
   
-  # Routing for scaffolding GUI
-  # ===========================
-  resources :events
-  resources :users do
-    resources :events, shallow: true
+  # [AUTH] Devise authentication setup
+  # ==================================
+  devise_for :users, skip: [:sessions, :passwords, :confirmations, :registrations, :unlocks]
+  
+  # [DEV] Routing for scaffolding GUI
+  # =================================
+  scope '/', defaults: {format: :html} do
+    # Devise authentication and User actions via GUI
+    devise_scope :user do
+      # Sessions
+      get '/login', to: 'api/sessions#new', as: 'new_user_session'
+      post '/login', to: 'api/sessions#create', as: 'user_session'
+      get '/logout', to: 'api/sessions#destroy', as: 'destroy_user_session'
+      
+      # Registrations
+      get '/signup', to: 'users/registrations#new', as: 'new_user_registration'
+      post '/signup', to: 'users/registrations#create', as: 'user_registration'
+      get '/user', to: 'users/registrations#edit', as: 'user_root'
+      
+      # Passwords
+      get '/user/reset_password', to: 'devise/passwords#new', as: 'new_user_password'
+      get '/user/reset_password/reset', to: 'devise/passwords#edit', as: 'edit_user_password'
+      put '/user/reset_password', to: 'devise/passwords#update', as: 'user_password'
+      post '/user/reset_password', to: 'devise/passwords#create'
+    end
+    
+    # [DEV] Routing for full access
+    resources :events
+    resources :users
+    
+    # [AUTH] Routing to create notifications when inviting friends
+    authenticate :user do
+      post '/notifications', to: 'notifications#create'
+    end
+    
+    # [AUTH] Routing for User's events via GUI
+    # NOTE: Priority lower than above for proper default resource paths
+    scope '/user' do
+      authenticate :user do
+        get '/events', to: 'events#user_index', as: 'user_events'
+        get '/events/:id', to: 'events#show'
+        get '/notifications', to: 'notifications#user_index', as: 'user_notifications'
+      end
+    end
   end
   
-  # Routing for API
-  # ===================
-  # Routes /api to Events & Users controllers
-  scope '/api', :defaults => {:format => 'json'} do
-    resources :events, only: [:index, :show, :create, :update, :destroy]
-    resources :users do
-      resources :events, shallow: true
+  # [PROD] Routing for API access
+  # =============================
+  scope :api, defaults: {format: :json} do
+    # Devise authentication and User actions via API
+    devise_scope :user do
+      # Sessions
+      post '/login', to: 'api/sessions#create'
+      delete '/logout', to: 'api/sessions#destroy'
+      
+      # Registrations
+      post '/signup', to: 'api/registrations#create'
+    end
+    
+    # Access to events via API
+    resources :events, only: [:create, :show, :update, :destroy]
+    
+    # Access to User's events via API
+    scope :user do
+      resources :events, only: [:index, :create, :show, :update, :destroy]
     end
   end
   

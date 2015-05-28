@@ -1,0 +1,20 @@
+<% if @notifications.empty? %>
+<div class="row">
+  <div class="col-md-4 center-text">
+  No Notifications
+  </div>
+</div>
+<% end %>
+<% @notifications.each do |notification| %>
+<div class="row">
+  <div class="panel panel-default col-md-4">
+    <div class="panel-body">
+      <strong><%= notification.event.user.fullname %></strong> 
+      (@<%= notification.event.user.handle %>) invited you to 
+      <%= link_to notification.event.activity %> in 
+      <strong><%= distance_of_time_in_words_to_now(notification.event.datetime) %></strong> at 
+      <strong><%= notification.event.location %></strong>.
+    </div>
+  </div>
+</div>
+<% end %>

@@ -1,15 +1,22 @@
 class EventsController < ApplicationController
-  protect_from_forgery with: :null_session
-  respond_to :html, :json
+  protect_from_forgery with: :exception
+  respond_to :html
   
   def index
     @events = Event.all
     respond_with(@events)
   end
   
+  def user_index
+    @events = Event.where(host: current_user.id)
+    respond_with(@events)
+  end
+  
   def show
     @event = Event.find(params[:id])
-    respond_with(@event)
+    @invited = User.joins(:notifications).where(notifications: {event: @event})
+    @others = User.where.not(id: @invited.pluck(:id) << current_user.id)
+    respond_with @event, @users, @others
   end
   
   def new

@@ -1,28 +1,40 @@
-<p>
-  <h2>Activity: </h2>
-  <%= @event.activity %>
-</p>
-
-<p>
-  <h2>Date & Time: </h2>
-  <%= @event.datetime %>
-</p>
-
-<p>
-  <h2>Location: </h2>
-  <%= @event.location %>
-</p>
-
-<p>
-  <h2>Description: </h2>
-  <%= @event.description %>
-</p>
-
-<p>
-  <h2>Host: </h2>
-  <%= @event.user.handle %>
-</p>
-
-<p>
-  <%= link_to 'Back', events_path %>
-</p>
+<div class="row">
+  <div class="col-md-4">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <%= @event.activity %> 
+        <%= link_to edit_event_path(@event), class: 'pull-right' do %>
+          <span class="glyphicon glyphicon-pencil" style="color: #FFFFFF"></span>
+        <% end %>
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item"><strong>When:</strong> <%= @event.datetime.strftime('%e %b %Y') %></li>
+        <li class="list-group-item"><strong>Where:</strong> <%= @event.location %></li>
+        <li class="list-group-item"><strong>Details:</strong> <%= @event.description %></li>
+        <li class="list-group-item"><strong>Host:</strong> <%= @event.user.handle %></li>
+        <li class="list-group-item">
+          <strong>Invited:</strong> 
+          <% if @invited.empty? %>
+          none
+          <% end %>
+          <% @invited.each do |user| %>
+          <%= user.handle %>
+          <% end %>
+        </li>
+        <li class="list-group-item">
+          <strong>Invite friends:</strong> 
+          <%= form_tag '/notifications', method: :post, class: 'form-inline' do %>
+            <%= hidden_field_tag :event_id, @event.id %>
+            <%= select_tag :target, options_for_select(@others.map{|u|[u.handle, u.id]}) %>
+            <%= submit_tag 'Invite' %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <%= link_to 'Back', events_path %>
+  </div>
+</div>
