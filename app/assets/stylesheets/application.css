@@ -27,3 +27,21 @@ body {
 .field_with_errors {
 	color: #cc3333;
 }
+
+@font-face {
+    font-family: 'OpenSans';
+    src: url('/assets/OpenSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'OpenSans-SemiboldItalic';
+    src: url('/assets/OpenSans-SemiboldItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'OpenSans-Bold';
+    src: url('/assets/OpenSans-Bold.ttf') format('truetype');
+}
+
+
+
