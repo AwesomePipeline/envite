@@ -14,11 +14,11 @@ The proposed level of difficulty is Apollo 11 with Mentorship, or Apollo 11 if w
 
 In the first column of **must haves**, we have decided that the bare minimum a user is able to do is to create an event and to invite his friends. His invited friends would also be able to vote on the venue and time chosen, and to suggest alternatives for others to vote on as well.
 
-![Invite](http://i.imgur.com/PfJk0Nz.png "Invite page")
+![Invite](http://i.imgur.com/no00j6b.png "Invite page")
 
 > Mockup for the host to create an event
 
-![Events](http://i.imgur.com/IHFOmr9.png "Invited page")
+![Events](http://i.imgur.com/rltChEL.png "Invited page")
 
 > List of events that the user has been invited to. Events will be presented in a "card" form, so it is clear to the user.
 
