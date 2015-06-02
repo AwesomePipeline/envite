@@ -4,6 +4,11 @@ Envite is an app that aims to help people organise meet-ups between friends in a
 
 Youtube link to our ignition: [here](https://youtu.be/osQjStOAci0?t=2h35m44s)
 
+## Code Status
+
+[![Build Status](https://travis-ci.org/awesomepipeline/envite.svg)](https://travis-ci.org/awesomepipeline/envite)
+[![Coverage Status](https://coveralls.io/repos/awesomepipeline/envite/badge.svg)](https://coveralls.io/r/awesomepipeline/envite)
+
 ## Planned features
 
 ![User stories](http://i.imgur.com/vwO0WNR.png "User Stories")
