@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   # ================
   validates :fullname, presence: true
   validates :handle, presence: true,  uniqueness: true,
-   length: {within: 6..12}
+   length: {within: 5..12}
   
   # Validating the email address with a regex
   # TODO: More robust email validator?
