@@ -8,6 +8,14 @@ Rails.application.routes.draw do
   # ==================================
   devise_for :users, skip: [:sessions, :passwords, :confirmations, :registrations, :unlocks]
   
+  # [ADMIN] Routing for admin pages
+  namespace :admin do
+    resources :users
+    resources :events
+  end  
+  
+  resources :events
+  
   # [DEV] Routing for scaffolding GUI
   # =================================
   scope '/', defaults: {format: :html} do
@@ -29,10 +37,6 @@ Rails.application.routes.draw do
       put '/user/reset_password', to: 'devise/passwords#update', as: 'user_password'
       post '/user/reset_password', to: 'devise/passwords#create'
     end
-    
-    # [DEV] Routing for full access
-    resources :events
-    resources :users
     
     # [AUTH] Routing to create notifications when inviting friends
     authenticate :user do

@@ -11,4 +11,13 @@ class ApplicationController < ActionController::Base
       format.json {render json: response, status: :unprocessable_entity}
     end
   end
+  
+  # CRUD sequence conventions
+  # index
+  # show
+  # new
+  # edit
+  # create
+  # update
+  # destroy
 end

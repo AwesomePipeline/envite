@@ -6,7 +6,7 @@ class Api::SessionsController < Devise::SessionsController
   def create
     warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
     respond_to do |format|
-      format.html {redirect_to users_path}
+      format.html {redirect_to root_path}
       format.json {render status: 200, json: {user: current_user}}
     end
   end

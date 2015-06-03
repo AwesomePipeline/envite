@@ -1,0 +1,49 @@
+<%= form_for @user, url: admin_users_path do |f| %>
+  
+  <% if @user.errors.any? %>
+  <div class="panel panel-danger">
+    <div class="panel-heading">
+      <strong><%= pluralize(@user.errors.count, "error") %></strong>
+       prohibited this user from being saved:
+    </div>
+    <ul class="list-group">
+      <% @user.errors.full_messages.each do |msg| %>
+        <li class="list-group-item"><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+  
+  <div class="form-group">
+    <%= f.label :fullname %><br>
+    <%= f.text_field :fullname, class: "form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :handle %><br>
+    <%= f.text_field :handle, class: "form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :email %><br>
+    <%= f.text_field :email, class: "form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br>
+    <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :password_confirmation %><br>
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+  
+<% end %>

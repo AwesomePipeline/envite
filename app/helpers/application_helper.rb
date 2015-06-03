@@ -11,7 +11,7 @@ module ApplicationHelper
     flash.each do |flash_type, message|
       concat(content_tag(:div, message, :class => "alert #{flash_style(flash_type)} alert-dismissible", role: :alert) do 
               concat content_tag(:button, "&times;".html_safe, :class => "close", data: { dismiss: 'alert' })
-              concat content_tag(:strong, flash_type.capitalize + "!") + " " + message
+              concat content_tag(:strong, flash_type.capitalize + ':') + ' ' + message
             end)
     end
     nil
