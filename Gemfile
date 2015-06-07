@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# Material design gem
+gem 'materialize-sass'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
 # Devise gem for authentication
