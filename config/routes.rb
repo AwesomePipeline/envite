@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     # Registrations
     get '/signup', to: 'devise/registrations#new', as: 'new_user_registration'
     post '/signup', to: 'devise/registrations#create', as: 'user_registration'
-    get '/user', to: 'devise/registrations#edit', as: 'user_root'
+    get '/user', to: 'devise/registrations#edit', as: 'edit_user_registration'
     
     # Passwords
     get '/user/reset_password', to: 'devise/passwords#new', as: 'new_user_password'
@@ -51,6 +51,7 @@ Rails.application.routes.draw do
       get '/events', to: 'events#user_index', as: 'user_events'
       get '/events/:id', to: 'events#show'
       get '/notifications', to: 'notifications#user_index', as: 'user_notifications'
+      get '/profile', to: 'users#show'
     end
   end
 end
