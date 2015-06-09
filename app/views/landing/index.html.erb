@@ -1,2 +1,14 @@
-<h1>Landing Page</h1>
-<%= link_to 'All Events', controller: 'events' %>
+<div class="row">
+  <div class="col-md-12">
+    <h1>Landing Page</h1>
+    <div class="panel panel-primary">
+      <div class="panel-heading">Test Accounts</div>
+      <ul class="list-group">
+        <li class="list-group-item">User: tester1, Password: 12345678</li>
+        <li class="list-group-item">User: tester2, Password: 12345678</li>
+        <li class="list-group-item">User: tester3, Password: 12345678</li>
+      </ul>
+    </div>
+    <%= link_to 'All Events', events_path, class: 'btn btn-primary', role: 'button' %>
+  </div>
+</div>
