@@ -1,4 +1,4 @@
-class Admin::UsersController < ApplicationController
+class Admin::UsersController < UsersController
   protect_from_forgery with: :exception
   respond_to :html
   before_filter :check_user_admin
@@ -33,17 +33,15 @@ class Admin::UsersController < ApplicationController
     end
   end
   
-  private
-    def user_params
-      params.require(:user).permit(
-        :email,
-        :fullname,
-        :handle,
-        :password,
-        :password_confirmation
-      )
+  def destroy
+    @user = User.find(params[:id])
+    if @user.destroy
+      flash[:success] = t(:admin_user_destroy_success)
     end
-    
+    redirect_to admin_users_path
+  end
+  
+  private
     def check_user_admin
       if current_user.try(:admin?)
         # Allow action

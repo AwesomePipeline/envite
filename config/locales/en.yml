@@ -24,4 +24,5 @@ en:
   auth_not_authorized_view: 'You are not authorized to view this page'
   
   # Admin messages
-  admin_user_create_success: 'User successfully created'
+  admin_user_create_success:	'User successfully created'
+  admin_user_destroy_success:	'User successfully destroyed'
