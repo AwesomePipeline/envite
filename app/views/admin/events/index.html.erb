@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-md-12">
+    <h2>All Events</h2>
+    <%= render 'table' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= link_to 'New Event', new_admin_event_path, class: 'btn btn-primary', role: 'button' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= render 'events/card' %>
+  </div>
+</div>

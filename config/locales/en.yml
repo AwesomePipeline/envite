@@ -26,3 +26,4 @@ en:
   # Admin messages
   admin_user_create_success:	'User successfully created'
   admin_user_destroy_success:	'User successfully destroyed'
+  admin_user_edit_success:		'User successfully edited'

@@ -33,6 +33,17 @@ class Admin::UsersController < UsersController
     end
   end
   
+  def update
+    @user = User.find(params[:id])
+      
+    if @user.update(user_params)
+      flash[:success] = t(:admin_user_edit_success)
+      redirect_to admin_users_path
+    else
+      respond_with @user
+    end
+  end
+  
   def destroy
     @user = User.find(params[:id])
     if @user.destroy
@@ -42,6 +53,7 @@ class Admin::UsersController < UsersController
   end
   
   private
+      
     def check_user_admin
       if current_user.try(:admin?)
         # Allow action
@@ -50,4 +62,5 @@ class Admin::UsersController < UsersController
         redirect_to new_user_session_path
       end
     end
+    
 end

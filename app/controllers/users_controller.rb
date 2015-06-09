@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  
-  private
+  protected
     def user_params
       params.require(:user).permit(
         :email,
@@ -10,5 +9,4 @@ class UsersController < ApplicationController
         :password_confirmation
       )
     end
-    
 end
