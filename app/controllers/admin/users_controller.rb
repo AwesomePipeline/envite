@@ -5,13 +5,13 @@ class Admin::UsersController < ApplicationController
   
   def index
     @users = User.all
-    respond_with(@users)
+    respond_with @users
   end
   
   def show
     @user = User.find(params[:id])
     @events = @user.events
-    respond_with(@user)
+    respond_with(@user, @events)
   end
   
   def new
@@ -29,7 +29,7 @@ class Admin::UsersController < ApplicationController
       flash[:success] = t(:admin_user_create_success)
       redirect_to admin_users_path
     else
-      respond_with(@user)
+      respond_with @user
     end
   end
   
