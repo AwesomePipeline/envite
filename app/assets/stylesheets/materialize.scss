@@ -61,6 +61,20 @@ $link-color: color("light-blue", "darken-1") !default;
   }
 }
 
+@media #{$medium-and-down} {
+    // styles for medium screens and larger
+    #event-header {
+      left: 10%;      
+  }
+} 
+
+@media #{$small-and-down} {
+    // styles for small screens and down
+    #event-header {
+      left: 20%;
+    }
+  }
+
 .tabs {
   .tab {
     a {
