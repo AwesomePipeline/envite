@@ -26,12 +26,34 @@
     ul li.disabled, ul li.disabled:hover {
       background-color: #1e88e5;
     }
+
+.ghost-button {
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 999em;
+    color: rgba(0, 0, 0, 0.44);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    height: 38px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: bottom;
+    white-space: nowrap;
+    display: inline-block;
+}
+
   </style>
 </head>
 <body>
+
   <nav class="z-depth-0 blue darken-1">
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo" id="event-header">Events</a>
+      <a href="#" class="brand-logo" id="event-header">Envite</a>
+      <ul id="nav-mobile" class="right">
+        <li class="disabled"><a href="#" class="test">Create an event!</a></li>
+
+      </ul>
     </div>
   </nav>
 
@@ -44,8 +66,18 @@
         <li class="tab col s3"><a href="#notifications">Notifications</a></li>
       </ul>
     </div>
+  </div>   
 
-  </div>       
+  <div class="row">      
+    <div class="container">
+      <div id="hosting">
+      <i class="mdi-action-stars"></i>
+      You don't seem to have an event hosted. Click here to host one!
+      <i class="mdi-action-stars"></i>
+      </div>
+    </div>
+  </div>    
+  
 
 
 
@@ -53,8 +85,8 @@
 
 
   <div class="container">
-    Yielding the container boys!
-    <%= yield %>
+<!--     Yielding the container boys!
+    <%= yield %> -->
   </div><!-- /.container -->
 </body>
 <script>
