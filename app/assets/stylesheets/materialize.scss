@@ -83,21 +83,34 @@ $link-color: color("light-blue", "darken-1") !default;
   }
 }
 
-.test {
+.create-event-button {
   border: 1px solid white;
   border-radius: 999em;
   line-height: 3em;
   margin-top: 0.5em;
   margin-right: 0.7em;
   transition: background-color 0.3s ease-out,
-            color 0.3s ease-out;
+              color 0.3s ease-out;
   &:hover, &:active {
     background-color: $primary-color-light;
     transition: background-color 0.3s ease-out,
-            color 0.3s ease-out;
+                color 0.3s ease-out;
   }
 }
 
+ul {
+  li {
+    &.disabled, &.disabled:hover {
+      background-color: #1e88e5;
+    }
+  }
+}
+
+#star-icon {
+  display: inline;
+  line-height: 0.7em;
+  vertical-align: text-bottom;
+}
 
 
 

@@ -23,36 +23,15 @@
   <style>
     /* Will be exported to a seperate style sheet soon. Placed here so that Rails doesn't take fucking
     forever to minify things */
-    ul li.disabled, ul li.disabled:hover {
-      background-color: #1e88e5;
-    }
-
-.ghost-button {
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    border-radius: 999em;
-    color: rgba(0, 0, 0, 0.44);
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    height: 38px;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    vertical-align: bottom;
-    white-space: nowrap;
-    display: inline-block;
-}
-
   </style>
 </head>
-<body>
 
+<body>
   <nav class="z-depth-0 blue darken-1">
     <div class="nav-wrapper">
       <a href="#" class="brand-logo" id="event-header">Envite</a>
       <ul id="nav-mobile" class="right">
-        <li class="disabled"><a href="#" class="test">Create an event!</a></li>
-
+        <li class="disabled"><a href="#" class="create-event-button"><i class="mdi-action-stars" id="star-icon"></i> Create an event!</a></li>
       </ul>
     </div>
   </nav>
@@ -66,8 +45,7 @@
         <li class="tab col s3"><a href="#notifications">Notifications</a></li>
       </ul>
       <ul class="tabs hide-on-med-and-up">
-        <li class="tab col s3"><a class="active" href="#hosting"><i class="mdi-social-person-add
-"></i></a></li>
+        <li class="tab col s3"><a class="active" href="#hosting"><i class="mdi-social-person-add"></i></a></li>
         <li class="tab col s3"><a href="#pending"><i class="mdi-content-reply-all"></i></a></li>
         <li class="tab col s3"><a href="#responded"><i class="mdi-image-edit"></i></a></li>
         <li class="tab col s3"><a href="#notifications"><i class="mdi-social-notifications"></i></a></li>
