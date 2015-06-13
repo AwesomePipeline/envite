@@ -4,7 +4,7 @@
   <div class="panel panel-danger">
     <div class="panel-heading">
       <strong><%= pluralize(@user.errors.count, "error") %></strong>
-       prohibited this user from being saved:
+      prohibited this user from being saved:
     </div>
     <ul class="list-group">
       <% @user.errors.full_messages.each do |msg| %>

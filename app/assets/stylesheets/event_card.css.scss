@@ -1,0 +1,37 @@
+.event-card {
+	padding: 15px 30px 20px 30px;
+	box-shadow: 1px 1px 5px #000000;
+	background-color: #FFFFFF;
+}
+
+.event-card hr {
+	margin: 15px 0px;
+}
+
+.event-card-header {
+	margin-top: 40px;
+}
+
+.event-card-header h1 {
+	margin: 0px;
+	padding: 0px;
+	font-size: 36px;
+	line-height: 40px;
+	font-weight: bold;
+}
+
+.event-card-header p {
+	font-size: 24px;
+	font-weight: lighter;
+}
+
+.avatar {
+	margin-bottom: 5px;
+}
+
+.avatar img {
+	width: 100%;
+	height: auto;
+	border-radius: 50%;
+	box-shadow: 0px 3px 5px #CCCCCC;
+}

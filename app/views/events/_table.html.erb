@@ -14,11 +14,11 @@
       <td><%= event.datetime %></td>
       <td><%= event.location %></td>
       <td><%= event.description %></td>
-      <td><%= link_to event.user.handle, user_path(event.user) %></td>
-      <td><%= link_to 'Show', event_path(event) %></td>
-      <td><%= link_to 'Edit', edit_event_path(event) %></td>
+      <td><%= event.user.handle %></td>
+      <td><%= link_to 'Show', event_path(event), class: 'btn btn-primary', role: 'button' %></td>
+      <td><%= link_to 'Edit', edit_event_path(event), class: 'btn btn-primary', role: 'button' %></td>
       <td><%= link_to 'Destroy', event_path(event), method: :delete,
-      data: {confirm: 'Are you sure?'} %></td>
+      data: {confirm: 'Are you sure?'}, class: 'btn btn-danger', role: 'button' %></td>
     </tr>
   <% end %>
 </table>

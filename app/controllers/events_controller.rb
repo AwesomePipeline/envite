@@ -21,6 +21,7 @@ class EventsController < ApplicationController
   
   def new
     @event = Event.new
+    @users = User.all
   end
   
   def edit

@@ -1,11 +1,12 @@
-<h1>My Events</h1>
-
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-12">
+    <h2>My Events</h2>
     <%= render 'table' %>
   </div>
 </div>
 
-<div class="center-block">
-  <%= link_to 'New Event', new_event_path %>
+<div class="row">
+  <div class="col-md-12">
+    <%= link_to 'New Event', new_event_path, class: 'btn btn-primary', role: 'button' %>
+  </div>
 </div>
