@@ -4,4 +4,6 @@ rvm:
 install:
   - bundle install
 script: 
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - bundle exec rake db:test:prepare
   - bundle exec rake
