@@ -1,77 +1,34 @@
-<div class="col-md-6 event-card">
-  
-    <div class="row">
-      <div class="col-xs-9">
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="event-card-header text-muted">
-            <h1><%= @event.activity %></h1>
-            <p>
-              <%= @event.datetime.strftime('%e %b, %l%p') %><br>
-              <%= @event.location %>
-            </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-3">
-        <div class="row">
-          <div class="col-xs-12">
-            <%= render 'users/avatar' %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12 text-center text-muted">
-            <i><%= @event.user.fullname %></i>
-          </div>
-        </div>
-      </div>
+<div class="col-md-12">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <%= @event.activity %> 
+      <%= link_to edit_event_path(@event), class: 'pull-right' do %>
+        <span class="glyphicon glyphicon-pencil" style="color: #FFFFFF"></span>
+      <% end %>
     </div>
-    
-    <div class="row">
-      <div class="col-md-12">
-        <hr>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="col-md-12">
-        <div id="map-canvas"></div>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="col-md-12">
-        <p class="text-muted">
-          <% if @event.description.blank? %>
-            No description
-          <% else %>
-            <%= @event.description %>
-          <% end %>
-        </p>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="col-md-12">
-        <p class="text-right text-success">
-          <i>Event <%= relative_word_time @event.datetime %></i>
-        </p>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="col-md-12"><hr></div>
-    </div>
-    
-    <div class="row">
-      <div class="col-md-12">
-        <div class="pull-right">
-          <%= link_to 'Decline', '', class: 'btn btn-danger', role: 'button' %>
-          <%= link_to 'Suggest', '', class: 'btn btn-warning', role: 'button' %>
-          <%= link_to 'Accept', '', class: 'btn btn-success', role: 'button' %>
-        </div>
-      </div>
-    </div>
-  
+    <ul class="list-group">
+      <li class="list-group-item"><strong>When:</strong> <%= @event.datetime.strftime('%e %b, %l%p') %></li>
+      <li class="list-group-item"><strong>Where:</strong> <%= @event.location %></li>
+      <li class="list-group-item"><strong>Details:</strong> <%= @event.description %></li>
+      <li class="list-group-item"><strong>Host:</strong> <%= @event.user.handle %></li>
+      <li class="list-group-item">
+        <strong>Invited:</strong> 
+        <% if @invited.empty? %>
+        none
+        <% end %>
+        <% @invited.each do |user| %>
+        <%= user.handle %>
+        (<%= response_to_string Notification.where(event: @event, target: user.id).first.response %>)
+        <% end %>
+      </li>
+      <li class="list-group-item">
+        <strong>Invite friends:</strong> 
+        <%= form_tag '/notifications', method: :post, class: 'form-inline' do %>
+          <%= hidden_field_tag :event_id, @event.id %>
+          <%= select_tag :target, options_for_select(@others.map{|u|[u.handle, u.id]}) %>
+          <%= submit_tag 'Invite' %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
 </div>

@@ -1,0 +1,71 @@
+<div class="col-md-6 event-card">
+  
+    <div class="row event-card-header text-muted">
+      <div class="col-xs-9">
+        <div class="row">
+          <div class="col-xs-12 event-card-details">
+            <h1><%= @event.activity %></h1>
+            <p>
+              <%= @event.datetime.strftime('%e %b, %l%p') %><br>
+              <%= @event.location %>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-3">
+        <div class="row">
+          <div class="col-xs-12">
+            <%= render 'users/avatar' %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 text-center text-muted">
+            <i><%= @event.user.fullname %></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-12"><hr></div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-12">
+        <div id="map-canvas"></div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-12 event-card-description">
+        <p class="text-muted">
+          <% if @event.description.blank? %>
+            No description
+          <% else %>
+            <%= @event.description %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-12 text-right text-success">
+        <i>Event <%= relative_word_time @event.datetime %></i>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-12"><hr></div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-12">
+        <div class="pull-right">
+          <%= link_to 'Decline', '', class: 'btn btn-danger', role: 'button' %>
+          <%= link_to 'Suggest', '', class: 'btn btn-warning', role: 'button' %>
+          <%= link_to 'Accept', '', class: 'btn btn-success', role: 'button' %>
+        </div>
+      </div>
+    </div>
+  
+</div>

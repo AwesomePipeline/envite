@@ -1,18 +1,24 @@
 .event-card {
+	margin: 20px auto;
 	padding: 15px 30px 20px 30px;
 	box-shadow: 1px 1px 5px #000000;
 	background-color: #FFFFFF;
 }
 
 .event-card hr {
-	margin: 15px 0px;
+	margin-top: 0px;
+	margin-bottom: 15px;
 }
 
 .event-card-header {
+	margin-bottom: 15px;
+}
+
+.event-card-details {
 	margin-top: 40px;
 }
 
-.event-card-header h1 {
+.event-card-details h1 {
 	margin: 0px;
 	padding: 0px;
 	font-size: 36px;
@@ -20,9 +26,14 @@
 	font-weight: bold;
 }
 
-.event-card-header p {
+.event-card-details p {
 	font-size: 24px;
 	font-weight: lighter;
+}
+
+.event-card-description p {
+	margin: 10px auto;
+	font-size: 16px;
 }
 
 .avatar {

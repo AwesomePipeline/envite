@@ -8,6 +8,8 @@ class Admin::EventsController < EventsController
   def new
     @event = Event.new
     @users = User.all
+    
+    render 'events/new'
   end
   
 end
