@@ -2,11 +2,6 @@ class EventsController < ApplicationController
   protect_from_forgery with: :exception
   respond_to :html
   
-  def index
-    @events = Event.all
-    respond_with(@events)
-  end
-  
   def user_index
     @events = Event.where(host: current_user.id)
     respond_with(@events)
@@ -21,7 +16,6 @@ class EventsController < ApplicationController
   
   def new
     @event = Event.new
-    @users = User.all
   end
   
   def edit
@@ -56,7 +50,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event.destroy
     
-    redirect_to events_path
+    redirect_to user_events_path
   end
   
   protected

@@ -1,4 +1,4 @@
-<%= form_for @event, url: {controller: "events", action: "create"} do |f| %>
+<%= form_for @event do |f| %>
   <% if @event.errors.any? %>
   <div class="panel panel-danger">
     <div class="panel-heading">
@@ -10,7 +10,6 @@
         <li class="list-group-item"><%= msg %></li>
       <% end %>
     </ul>
-    <%= params.inspect %>
   </div>
   <% end %>
   
