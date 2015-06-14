@@ -31,9 +31,16 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     
-    @event.save
+    # Check that the host is the current user if user is not an admin
+    # TODO: May not allow this for admin also
+    if !current_user.admin? && params[:event][:host] != current_user.id
+      flash[:error] = t(:event_create_error_host_mismatch)
+    else
+      @event.save
+    end
     respond_with(@event)
   end
+  
   
   def update
     @event = Event.find(params[:id])
@@ -52,9 +59,19 @@ class EventsController < ApplicationController
     redirect_to events_path
   end
   
-  private
+  protected
     def event_params
+      # Merge in host's user id for non-admin users
+      if !current_user.admin?
+        params[:event].merge!(host: current_user.id)
+      end
+      
       params.require(:event).permit(
-      :activity, :datetime, :location, :description, :host)
+        :activity,
+        :datetime,
+        :location,
+        :description,
+        :host
+      )
     end
 end
