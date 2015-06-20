@@ -31,3 +31,6 @@ en:
   # Userland messages
   
   event_create_error_host_mismatch:	'Invalid event data submitted'
+  
+  notification_accept_success:		'Event invitation accepted'
+  notification_decline_success:		'Event invitation declined'

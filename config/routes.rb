@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   # [AUTH] Routing to create notifications when inviting friends
   authenticate :user do
     post '/notifications', to: 'notifications#create'
+    get '/notifications/:id/accept', to: 'notifications#accept', as: 'accept_notification'
+    get '/notifications/:id/decline', to: 'notifications#decline', as: 'decline_notification'
   end
   
   # [PUBLIC] Routing for login and user management

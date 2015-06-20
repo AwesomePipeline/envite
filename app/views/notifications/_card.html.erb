@@ -1,0 +1,16 @@
+<div class="col-md-12">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <strong><%= notification.event.user.fullname %></strong> 
+      (@<%= notification.event.user.handle %>) invited you to 
+      <%= link_to notification.event.activity %> in 
+      <strong><%= distance_of_time_in_words_to_now(notification.event.datetime) %></strong> at 
+      <strong><%= notification.event.location %></strong>.
+    </div>
+    <ul class="list-group btn-group btn-group-justified">
+      <%= accept_link_helper notification %>
+      <%= link_to 'Suggest', '#', class: 'btn btn-warning', role: 'button' %>
+      <%= decline_link_helper notification %>
+    </ul>
+  </div>
+</div>
