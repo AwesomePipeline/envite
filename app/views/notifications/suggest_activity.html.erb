@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1 class="h2">Suggest Activity</h1>
+    <%= form_for @notification, url: suggest_notification_path, method: 'post' do |f| %>
+      <div class="form-group">
+        <%= f.label :current_activity, class: 'control-label' %>
+        <p class="form-control-static"><%= @notification.event.activity %></p>
+      </div>
+      <div class="form-group">
+        <%= f.hidden_field :suggest_type, value: 'activity' %>
+        <%= f.label :suggest_activity, 'Your suggestion' , class: 'control-label' %>
+        <%= f.text_field :suggest_activity, class: 'form-control', autofocus: true %>
+      </div>
+      <%= render 'form_suggest_submit', f: f %>
+    <% end %>
+  </div>
+</div>

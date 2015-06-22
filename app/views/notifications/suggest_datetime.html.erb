@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1 class="h2">Suggest Date / Time</h1>
+    <%= form_for @notification, url: suggest_notification_path, method: 'post' do |f| %>
+      <div class="form-group">
+        <%= f.label 'Current Date & Time', class: 'control-label' %>
+        <p class="form-control-static"><%= display_datetime @notification.event.datetime %>
+        (<%= relative_word_time @notification.event.datetime %>)</p>
+      </div>
+      <div class="form-group form-inline">
+        <%= f.hidden_field :suggest_type, value: 'datetime' %>
+        <%= f.label :suggest_datetime, 'Your suggestion' , class: 'control-label' %><br>
+        <%= f.datetime_select :suggest_datetime, {}, {class: 'form-control'} %>
+      </div>
+      <%= render 'form_suggest_submit', f: f %>
+    <% end %>
+  </div>
+</div>

@@ -37,7 +37,7 @@
   <% # Allow admin to select any user as event host %>
   <div class="form-group">
     <%= f.label :host, class: 'control-label' %><br>
-    <%= f.select :host, options_for_select(@users.all.map{|u|[u.handle, u.id]}), {}, {class: 'form-control'} %>
+    <%= f.select :host, options_for_select(User.all.map{|u|[u.handle, u.id]}), {}, {class: 'form-control'} %>
   </div>
   <% end %>
   

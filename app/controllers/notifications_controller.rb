@@ -1,11 +1,9 @@
 class NotificationsController < ApplicationController
   protect_from_forgery with: :exception
   respond_to :html
+  include NotificationsHelper
   
-  # For forms posted without wrapping model
-  wrap_parameters :notification
-  
-  def user_index
+  def user_index  
     @notifications = Notification.where(target: current_user.id)
   end
   
@@ -26,24 +24,64 @@ class NotificationsController < ApplicationController
     end
   end
   
+  # Accept / Decline event invitations
   def accept
-    accept_decline 10, :success, t(:notification_accept_success)
+    set_response_code :accept
+    flash[:success] = t(:notification_accept_success)
+    redirect_to :back
   end
   
   def decline
-    accept_decline 20, :success, t(:notification_decline_success)
+    set_response_code :reject
+    flash[:success] = t(:notification_reject_success)
+    redirect_to :back
+  end
+  
+  # Forms to suggest alternative activity, datetime or location
+  def suggest_activity
+    @notification = Notification.find(params[:id])
+  end
+  
+  def suggest_datetime
+    @notification = Notification.find(params[:id])
+  end
+  
+  def suggest_location
+    @notification = Notification.find(params[:id])
+  end
+  
+  # Handling of suggestions
+  def suggest
+    @notification = Notification.find(params[:id])
+    
+    case params[:notification][:suggest_type]
+    when 'activity'
+      @notification.suggest_activity = params[:notification][:suggest_activity]
+    when 'datetime'
+      @notification.suggest_datetime = datetime_from_params(params, :notification, :suggest_datetime)
+    when 'location'
+      @notification.suggest_location = params[:notification][:suggest_location]
+    else
+      flash[:error] = t(:notification_suggest_type_error)
+    end
+    
+    if @notification.save!
+      flash[:success] = t(:notification_suggest_success)
+    else
+      flash[:error] = t(:notification_suggest_error)
+    end
+    
+    redirect_to :back
   end
   
   private
-    def accept_decline new_response, flash_type, flash_message
+    def set_response_code response_type
       @notification = Notification.find(params[:id])
-      @notification.response = new_response
-      @notification.save
-      flash[flash_type] = flash_message
-      redirect_to :back
+      @notification.response = set_response(@notification.response, response_type)
+      @notification.save!
     end
-  
+    
     def notification_params
-      params.permit(:event_id, :target)
+      params.require(:notification).permit(:event_id, :target)
     end
 end

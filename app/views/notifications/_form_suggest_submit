@@ -1,0 +1,4 @@
+<div class="form-group">
+  <%= f.submit 'Suggest', class: 'btn btn-success' %>
+  <%= link_to 'Back', user_notifications_path, class: 'btn btn-danger', role: 'button' %>
+</div>

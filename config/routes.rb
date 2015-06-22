@@ -21,9 +21,18 @@ Rails.application.routes.draw do
   
   # [AUTH] Routing to create notifications when inviting friends
   authenticate :user do
+    # Creating new notifications
     post '/notifications', to: 'notifications#create'
+    
+    # Accepting / Declining an invitation
     get '/notifications/:id/accept', to: 'notifications#accept', as: 'accept_notification'
     get '/notifications/:id/decline', to: 'notifications#decline', as: 'decline_notification'
+    
+    # Suggesting different activity / datetime / location for an event
+    get '/notifications/:id/suggest_activity', to: 'notifications#suggest_activity', as: 'suggest_activity_notification'
+    get '/notifications/:id/suggest_datetime', to: 'notifications#suggest_datetime', as: 'suggest_datetime_notification'
+    get '/notifications/:id/suggest_location', to: 'notifications#suggest_location', as: 'suggest_location_notification'
+    post '/notifications/:id/suggest', to: 'notifications#suggest', as: 'suggest_notification'
   end
   
   # [PUBLIC] Routing for login and user management
