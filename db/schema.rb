@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150625094637) do
+ActiveRecord::Schema.define(version: 20150625163152) do
 
   create_table "events", force: :cascade do |t|
     t.string   "activity",                 null: false
@@ -21,6 +21,13 @@ ActiveRecord::Schema.define(version: 20150625094637) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.integer  "host",                     null: false
+  end
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.integer  "feedback_type", null: false
+    t.string   "details",       null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "notifications", force: :cascade do |t|

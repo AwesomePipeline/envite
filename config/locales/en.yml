@@ -38,3 +38,6 @@ en:
   notification_suggest_success:		'Suggestion recorded'
   notification_suggest_error:		'Invalid suggestion submitted'
   notification_suggest_type_error:	'Invalid suggestion type'
+  
+  feedback_create_success:			'Thank you for submitting feedback!'
+  feedback_create_error:			'Something went wrong'

@@ -1,0 +1,30 @@
+<div class="row">
+  <h1>Send us feedback!</h1>
+  <div class="col-md-12 well">
+    <p>Any thoughts on the user experience, the pain points, what can be improved
+    or made smoother, please let us know! We will take all feedback seriously and
+    try to implement them so that it can contribute to a better user experience.</p>
+    <p>If you have found any bugs and / or things happening that you think are
+    unintuitive, please let us know through the form below or open an issue
+    directly on our GitHub repository: 
+    <a href="https://github.com/awesomepipeline/envite">link</a>.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= form_for @feedback do |f| %>
+      <div class="form-group">
+        <%= f.label :feedback_type, class: 'control-label' %>
+        <%= f.select :feedback_type, options_for_select(FeedbackHelper::FEEDBACK_TYPES), {}, {class: 'form-control'} %>
+      </div>
+      <div class="form-group">
+        <%= f.label :details, class: 'control-label' %>
+        <%= f.text_area :details, rows: 10, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.submit 'Submit Feedback', class: 'btn btn-success'%>
+      </div>
+    <% end %>
+  </div>
+</div>

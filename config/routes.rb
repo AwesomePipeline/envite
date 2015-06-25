@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   # =====================
   root 'landing#index'
   
+  # [PUBLIC] Feedback page
+  get '/feedbacks/new', to: 'feedbacks#new', as: 'new_feedback'
+  post '/feedbacks', to: 'feedbacks#create', as: 'feedbacks'
+  
   # [AUTH] Devise authentication setup
   # ==================================
   # devise_for :users, skip: [:sessions, :passwords, :confirmations, :registrations, :unlocks]
@@ -14,6 +18,8 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users
     resources :events
+    
+    get '/feedbacks', to: 'feedbacks#index', as: 'feedbacks'
   end
   
   # [TEMP]
