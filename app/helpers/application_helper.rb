@@ -20,7 +20,7 @@ module ApplicationHelper
   
   # Returns the formatted datetime for display
   def display_datetime(time)
-    time.strftime('%l:%M%p, %e %B')
+    time.strftime('%e %B, %l:%M%p')
   end
   
   # Returns the relative time in words with timezone correction

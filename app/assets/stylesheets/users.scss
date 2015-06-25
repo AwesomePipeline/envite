@@ -21,14 +21,17 @@
 	text-align: center;
 }
 
-.avatar img.no-response {
+.avatar img.no_response {
 	border-color: #f0ad4e;
+	box-shadow: none;
 }
 
 .avatar img.accepted {
 	border-color: #5cb85c;
+	box-shadow: none;
 }
 
-.avatar img.declined {
+.avatar img.rejected {
 	border-color: #d9534f;
+	box-shadow: none;
 }

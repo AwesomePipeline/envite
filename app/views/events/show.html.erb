@@ -1,12 +1,6 @@
 <div class="row">
-  <div class="col-md-6">
-    <%= render 'gmaps' %>
-    <%= render 'notification' %>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-12">
+  <div class="col-md-8 col-md-offset-2">
+    <%= render 'card_full', event: @event %>
     <%= link_to 'Back', user_events_path, class: 'btn btn-default', role: 'button' %>
   </div>
 </div>

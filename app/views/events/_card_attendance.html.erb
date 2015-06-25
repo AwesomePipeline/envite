@@ -1,0 +1,25 @@
+<%
+  notifications = Notification.where(event: event)
+  accepted = 0
+  no_response = 0
+  declined = 0
+  notifications.each do |notification|
+    if notification.has_responded?
+      if notification.has_accepted?
+        accepted += 1
+      else
+        declined += 1
+      end
+    else
+      no_response += 1
+    end
+  end
+%>
+
+<div class="row">
+  <div class="col-md-12 text-center">
+    <span class="text-success"><%= accepted %> Accepted</span>
+    / <span class="text-warning"><%= no_response %> Not Responded</span>
+    / <span class="text-danger"><%= declined %> Declined</span>
+  </div>
+</div>

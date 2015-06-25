@@ -23,10 +23,16 @@ Rails.application.routes.draw do
   end
   
   # [TEMP]
-  resources :events
+  # resources :events
   
   # [AUTH] Routing to create notifications when inviting friends
   authenticate :user do
+    # Creating new events
+    get '/events/new', to: 'events#new', as: 'new_event'
+    post '/events', to: 'events#create', as: 'events'
+    get '/events/:id', to: 'events#show', as: 'event'
+    get '/events/:id/invite', to: 'events#invite', as: 'invite_event'
+    
     # Creating new notifications
     post '/notifications', to: 'notifications#create'
     
@@ -53,6 +59,7 @@ Rails.application.routes.draw do
     get '/signup', to: 'devise/registrations#new', as: 'new_user_registration'
     post '/signup', to: 'devise/registrations#create', as: 'user_registration'
     get '/user', to: 'devise/registrations#edit', as: 'edit_user_registration'
+    put '/user', to: 'devise/registrations#update', as: 'update_user_registration'
     
     # Passwords
     get '/user/reset_password', to: 'devise/passwords#new', as: 'new_user_password'

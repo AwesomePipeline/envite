@@ -9,9 +9,7 @@ class EventsController < ApplicationController
   
   def show
     @event = Event.find(params[:id])
-    @invited = User.joins(:notifications).where(notifications: {event: @event})
-    @others = User.where.not(id: @invited.pluck(:id) << current_user.id)
-    respond_with @event, @users, @others
+    respond_with @event
   end
   
   def new
@@ -51,6 +49,11 @@ class EventsController < ApplicationController
     @event.destroy
     
     redirect_to user_events_path
+  end
+  
+  # Shows all friends and allow host to invite friends to event
+  def invite
+    render plain: 'work in progress'
   end
   
   protected
