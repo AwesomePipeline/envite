@@ -16,7 +16,7 @@
     <%= form_for @feedback do |f| %>
       <div class="form-group">
         <%= f.label :feedback_type, class: 'control-label' %>
-        <%= f.select :feedback_type, options_for_select(FeedbackHelper::FEEDBACK_TYPES), {}, {class: 'form-control'} %>
+        <%= f.select :feedback_type, options_for_select(FeedbacksHelper::FEEDBACK_TYPES), {}, {class: 'form-control'} %>
       </div>
       <div class="form-group">
         <%= f.label :details, class: 'control-label' %>
