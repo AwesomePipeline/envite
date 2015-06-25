@@ -9,8 +9,8 @@
       </div>
       <div class="form-group form-inline">
         <%= f.hidden_field :suggest_type, value: 'datetime' %>
-        <%= f.label :suggest_datetime, 'Your suggestion' , class: 'control-label' %><br>
-        <%= f.datetime_select :suggest_datetime, {}, {class: 'form-control'} %>
+        <%= f.label :suggested_datetime, 'Your suggestion' , class: 'control-label' %><br>
+        <%= f.datetime_select :suggested_datetime, {}, {class: 'form-control'} %>
       </div>
       <%= render 'form_suggest_submit', f: f %>
     <% end %>

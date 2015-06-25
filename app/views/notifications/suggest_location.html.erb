@@ -8,8 +8,8 @@
       </div>
       <div class="form-group">
         <%= f.hidden_field :suggest_type, value: 'location' %>
-        <%= f.label :suggest_location, 'Your suggestion' , class: 'control-label' %>
-        <%= f.text_field :suggest_location, class: 'form-control', autofocus: true %>
+        <%= f.label :suggested_location, 'Your suggestion' , class: 'control-label' %>
+        <%= f.text_field :suggested_location, class: 'form-control', autofocus: true %>
       </div>
       <%= render 'form_suggest_submit', f: f %>
     <% end %>

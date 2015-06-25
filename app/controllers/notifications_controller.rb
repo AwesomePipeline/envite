@@ -1,7 +1,6 @@
 class NotificationsController < ApplicationController
   protect_from_forgery with: :exception
   respond_to :html
-  include NotificationsHelper
   
   def user_index  
     @notifications = Notification.where(target: current_user.id)
@@ -26,15 +25,11 @@ class NotificationsController < ApplicationController
   
   # Accept / Decline event invitations
   def accept
-    set_response_code :accept
-    flash[:success] = t(:notification_accept_success)
-    redirect_to :back
+    set_response 'accept'
   end
   
   def decline
-    set_response_code :reject
-    flash[:success] = t(:notification_reject_success)
-    redirect_to :back
+    set_response 'reject'
   end
   
   # Forms to suggest alternative activity, datetime or location
@@ -52,33 +47,47 @@ class NotificationsController < ApplicationController
   
   # Handling of suggestions
   def suggest
-    @notification = Notification.find(params[:id])
-    
-    case params[:notification][:suggest_type]
-    when 'activity'
-      @notification.suggest_activity = params[:notification][:suggest_activity]
-    when 'datetime'
-      @notification.suggest_datetime = datetime_from_params(params, :notification, :suggest_datetime)
-    when 'location'
-      @notification.suggest_location = params[:notification][:suggest_location]
-    else
-      flash[:error] = t(:notification_suggest_type_error)
-    end
-    
-    if @notification.save!
-      flash[:success] = t(:notification_suggest_success)
-    else
-      flash[:error] = t(:notification_suggest_error)
-    end
-    
-    redirect_to :back
+    set_response params[:notification][:suggest_type]
   end
   
   private
-    def set_response_code response_type
+    # Sets the appropriate response flags and redirects to :back
+    # Defined in: notifications_controller.rb
+    def set_response response_type
       @notification = Notification.find(params[:id])
-      @notification.response = set_response(@notification.response, response_type)
-      @notification.save!
+      
+      case response_type
+      when 'accept'
+        @notification.has_responded = true
+        @notification.has_accepted = true
+        flash[:success] = t(:notification_accept_success)
+      when 'reject'
+        @notification.has_responded = true
+        @notification.has_accepted = false
+        flash[:success] = t(:notification_reject_success)
+      when 'activity'
+        @notification.has_suggested_activity = true
+        @notification.suggested_activity = params[:notification][:suggested_activity]
+        flash[:success] = t(:notification_suggest_success)
+      when 'datetime'
+        @notification.has_suggested_datetime = true
+        @notification.suggested_datetime = datetime_from_params(params[:notification][:suggested_datetime])
+        flash[:success] = t(:notification_suggest_success)
+      when 'location'
+        @notification.has_suggested_location = true
+        @notification.suggested_location = params[:notification][:suggested_location]
+        flash[:success] = t(:notification_suggest_success)
+      else
+        flash[:error] = t(:notification_suggest_type_error)
+        redirect_to :back and return
+      end
+      
+      if !@notification.save!
+        flash[:success] = nil
+        flash[:error] = t(:notification_suggest_error)
+      end
+      
+      redirect_to :back
     end
     
     def notification_params
