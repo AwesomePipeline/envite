@@ -8,6 +8,7 @@
           <%= event.location %>
         </p>
         <% if show_link %>
+          <%= link_to 'Change', edit_event_path(event), class: 'btn btn-success', role: 'button' %>
           <%= link_to 'View Details', event_path(event), class: 'btn btn-primary', role: 'button' %>
         <% end %>
       </div>

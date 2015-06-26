@@ -26,7 +26,6 @@ module ApplicationHelper
   # Returns the relative time in words with timezone correction
   def relative_word_time(time)
     now = Time.now
-    time -= Time.zone_offset(Time.now.zone)
     if time - now > 0
       'in ' + distance_of_time_in_words(time, now)
     elsif now - time > 7.days

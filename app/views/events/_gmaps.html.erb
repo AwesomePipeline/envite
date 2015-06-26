@@ -1,10 +1,27 @@
 <script>
 function initialize<%= event.id %>() {
-  var mapOptions = {
-    center: { lat: -34.397, lng: 150.644},
-    zoom: 8
-  };
-  var map = new google.maps.Map(document.getElementById('map-canvas-<%= event.id %>'), mapOptions);
+  geocoder = new google.maps.Geocoder();
+  geocoder.geocode({
+    address: '<%= event.location %>, Singapore',
+    region: 'sg'
+  }, function(results, status) {
+    if(status == google.maps.GeocoderStatus.OK) {
+      var mapOptions = {
+        zoom: 15,
+        center: results[0].geometry.location,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      }
+      
+      map = new google.maps.Map(document.getElementById('map-canvas-<%= event.id %>'), mapOptions);
+      
+      var marker = new google.maps.Marker({
+        map: map,
+        position: results[0].geometry.location
+      });
+      
+      map.setCenter(results[0].geometry.location)
+    }
+  });
 }
 
 function loadScript<%= event.id %>() {

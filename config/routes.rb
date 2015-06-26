@@ -28,9 +28,10 @@ Rails.application.routes.draw do
   # [AUTH] Routing to create notifications when inviting friends
   authenticate :user do
     # Creating new events
-    get '/events/new', to: 'events#new', as: 'new_event'
     post '/events', to: 'events#create', as: 'events'
+    get '/events/new', to: 'events#new', as: 'new_event'
     get '/events/:id', to: 'events#show', as: 'event'
+    get '/events/:id/edit', to: 'events#edit', as: 'edit_event'
     get '/events/:id/invite', to: 'events#invite', as: 'invite_event'
     
     # Creating new notifications
