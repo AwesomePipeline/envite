@@ -7,20 +7,21 @@ class NotificationsController < ApplicationController
   end
   
   def create
-    @notification = Notification.where(event_id: params[:event_id], target: params[:target])
+    @notification = Notification.where(event_id: params[:event_id], target: params[:user_id])
     if @notification.empty?
-      @notification = Notification.new(notification_params)
-      if @notification.save
-        flash[:notice] = "Friend invited"
-        redirect_to :back
+      @notification = Notification.new
+      @notification.event_id = params[:event_id]
+      @notification.target = params[:user_id]
+      if @notification.save!
+        flash[:success] = t(:notification_create_success)
       else
-        flash[:error] = "Unable to invite friend"
-        redirect_to :back
+        flash[:error] = t(:notification_create_error)
       end
     else
-      flash[:error] = "That friend is already invited"
-      redirect_to :back
+      flash[:error] = t(:notification_create_exists_error)
     end
+    
+    redirect_to :back
   end
   
   # Accept / Decline event invitations

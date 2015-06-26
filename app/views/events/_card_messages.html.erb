@@ -1,0 +1,26 @@
+<%
+  messages = Message.where(event: event)
+%>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= form_for Message.new do |f| %>
+      <div class="form-group">
+        <div class="col-xs-10">
+          <%= f.text_field :message, class: 'form-control' %>
+        </div>
+        <div class="col-xs-2">
+          <%= f.submit 'Send', class: 'btn btn-primary', role: 'button' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+  <% messages.each do |message| %>
+    <%= render 'messages/card', message: message %>
+  <% end %>
+  </div>
+</div>

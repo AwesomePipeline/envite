@@ -1,0 +1,19 @@
+<%
+  notifications = Notification.where(event: event)
+%>
+
+<div class="row">
+  <div class="col-md-12">
+  <% notifications.each do |notification| %>
+  <% if notification.has_suggested_activity? %>
+    <%= render 'card_suggestion', notification: notification, type: :activity %>
+  <% end %>
+  <% if notification.has_suggested_activity? %>
+    <%= render 'card_suggestion', notification: notification, type: :datetime %>
+  <% end %>
+  <% if notification.has_suggested_activity? %>
+    <%= render 'card_suggestion', notification: notification, type: :location %>
+  <% end %>
+  <% end %>
+  </div>
+</div>

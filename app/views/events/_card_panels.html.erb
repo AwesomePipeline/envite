@@ -1,0 +1,42 @@
+<%
+  tabs = ['invited', 'suggestions', 'messages', 'history']
+  tab_content = [
+    render('card_invited', event: event) + render('card_invite', event: event),
+    render('card_suggestions', event: event),
+    render('card_messages', event: event),
+    "<p><br>This feature is a work in progress</p>".html_safe
+  ]
+  active = [false, false, false, false]
+  
+  if params.has_key?(:tab)
+    index = tabs.find_index(params[:tab])
+    if index != nil
+      active[tabs.find_index(params[:tab])]= true
+    else
+      active[0] = true
+    end
+  else
+    active[0] = true
+  end
+%>
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="nav nav-tabs nav-justified">
+      <% tabs.each do |tab| %>
+      <li role="presentation" <%= active[tabs.find_index(tab)] ? 'class=active' : nil %>>
+        <a href="#<%= tab %>" aria-controls="<%= tab %>" role="tab" data-toggle="tab">
+        <%= tab.capitalize %>
+        </a>
+      </li>
+      <% end %>
+    </ul>
+    <div class="tab-content">
+      <% tabs.each do |tab| %>
+      <div role="tabpanel" class="tab-pane <%= active[tabs.find_index(tab)] ? 'active' : nil %>" id="<%= tab %>">
+        <%= tab_content[tabs.find_index(tab)] %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

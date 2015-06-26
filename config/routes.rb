@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     
     # Creating new notifications
     post '/notifications', to: 'notifications#create'
+    get '/notifications/invite/:event_id/:user_id', to: 'notifications#create', as: 'invite_notifications'
     
     # Accepting / Declining an invitation
     get '/notifications/:id/accept', to: 'notifications#accept', as: 'accept_notification'
@@ -46,6 +47,10 @@ Rails.application.routes.draw do
     get '/notifications/:id/suggest_datetime', to: 'notifications#suggest_datetime', as: 'suggest_datetime_notification'
     get '/notifications/:id/suggest_location', to: 'notifications#suggest_location', as: 'suggest_location_notification'
     post '/notifications/:id/suggest', to: 'notifications#suggest', as: 'suggest_notification'
+    
+    # Creating messages
+    get '/events/:id/:tab', to: 'events#show'
+    post '/events/:id/messages', to: 'messages#create', as: 'messages'
   end
   
   # [PUBLIC] Routing for login and user management

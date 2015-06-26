@@ -1,0 +1,22 @@
+<%
+  case type
+  when :activity
+    @original = notification.event.activity
+    @suggestion = notification.suggested_activity
+  when :datetime
+    @original = display_datetime notification.event.datetime
+    @suggestion = display_datetime notification.suggested_datetime
+  when :location
+    @original = notification.event.location
+    @suggestion = notification.suggested_location
+  end
+%>
+
+<div class="row">
+    <div class="panel panel-warning">
+      <div class="panel-body">
+        <%= notification.user.fullname %> suggested <strong><%= @suggestion %></strong>
+        instead of <strong><%= @original %></strong>
+      </div>
+    </div>
+</div>

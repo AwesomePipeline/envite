@@ -53,7 +53,7 @@ class EventsController < ApplicationController
   
   # Shows all friends and allow host to invite friends to event
   def invite
-    render plain: 'work in progress'
+    @event = Event.find(params[:id])
   end
   
   protected

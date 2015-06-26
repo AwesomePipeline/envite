@@ -1,5 +1,9 @@
 <div class="event-card">
   
+  <%= render 'card_panels', event: event %>
+  
+  <%= render 'common/row_divider' %>
+  
   <%= render 'card_header', event: event, show_link: false %>
   
   <%= render 'common/row_divider' %>
@@ -23,9 +27,5 @@
       <em>Event <%= relative_word_time event.datetime %></em>
     </div>
   </div>
-  
-  <%= render 'common/row_divider' %>
-  
-  <%= render 'card_invite', event: event %>
   
 </div>

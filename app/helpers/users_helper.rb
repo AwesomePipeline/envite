@@ -6,7 +6,7 @@ module UsersHelper
     when :rejected
       'class=rejected'
     when :no_response
-      'class=no-response'
+      'class=no_response'
     else
       nil
     end

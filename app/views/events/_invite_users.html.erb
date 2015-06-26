@@ -1,0 +1,20 @@
+<%
+  invited = User.joins(:notifications).where(notifications: {event: event})
+  others = User.where.not(id: invited.pluck(:id) << current_user.id)
+%>
+
+<div class="row">
+  <div class="col-md-12">
+    <% others.each_slice(4) do |users| %>
+    <div class="row">
+    <% users.each do |user| %>
+      <div class="col-xs-3">
+        <a href="<%= invite_notifications_path(event, user) %>">
+          <%= render 'users/avatar', user: user %>
+        </a>
+      </div>
+    <% end %>
+    </div>
+    <% end %>
+  </div>
+</div>
