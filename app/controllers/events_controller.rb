@@ -33,7 +33,6 @@ class EventsController < ApplicationController
     respond_with(@event)
   end
   
-  
   def update
     @event = Event.find(params[:id])
       
@@ -42,13 +41,6 @@ class EventsController < ApplicationController
     else
       render 'edit'
     end
-  end
-  
-  def destroy
-    @event = Event.find(params[:id])
-    @event.destroy
-    
-    redirect_to user_events_path
   end
   
   # Shows all friends and allow host to invite friends to event
