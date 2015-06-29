@@ -1,0 +1,15 @@
+<table class="table table-striped">
+  <tr>
+    <th class="col-xs-2">Type</th>
+    <th>Details</th>
+    <th class="col-xs-3">Submitted</th>
+  </tr>
+  
+  <% @feedbacks.each do |feedback| %>
+    <tr>
+      <td><%= FeedbacksHelper::FEEDBACK_TYPES[feedback.feedback_type] %></td>
+      <td><%= simple_format(feedback.details) %></td>
+      <td><%= display_datetime(feedback.created_at) %></td>
+    </tr>
+  <% end %>
+</table>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150603123123) do
+ActiveRecord::Schema.define(version: 20150626124051) do
 
   create_table "events", force: :cascade do |t|
     t.string   "activity",                 null: false
@@ -23,11 +23,34 @@ ActiveRecord::Schema.define(version: 20150603123123) do
     t.integer  "host",                     null: false
   end
 
-  create_table "notifications", force: :cascade do |t|
+  create_table "feedbacks", force: :cascade do |t|
+    t.integer  "feedback_type", null: false
+    t.string   "details",       null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
     t.integer  "event_id",   null: false
-    t.integer  "target",     null: false
+    t.integer  "user_id",    null: false
+    t.string   "message",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "event_id",                               null: false
+    t.integer  "target",                                 null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.string   "suggested_activity",     default: ""
+    t.datetime "suggested_datetime"
+    t.string   "suggested_location",     default: ""
+    t.boolean  "has_responded",          default: false, null: false
+    t.boolean  "has_accepted",           default: false, null: false
+    t.boolean  "has_suggested_activity", default: false, null: false
+    t.boolean  "has_suggested_datetime", default: false, null: false
+    t.boolean  "has_suggested_location", default: false, null: false
   end
 
   create_table "users", force: :cascade do |t|

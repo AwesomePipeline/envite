@@ -16,21 +16,12 @@
  */
 
 /* For Google Maps */
-html, body, #map-canvas {
+html, body {
 	height: 100%;
 }
 
-#map-canvas {
-	position: relative;
-	width: 100%;
-	height: 100%;
-}
-
-/* Padding top controls aspect ratio, e.g. 40% is W:H => 100%:40% */
-#map-canvas:before {
-	content: '';
-	display: block;
-	padding-top: 40%;
+.map-canvas {
+	height: 300px;
 }
 
 /* Padding to account for navbar height */

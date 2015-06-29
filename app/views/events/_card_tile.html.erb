@@ -1,0 +1,35 @@
+<div class="event-card">
+  
+  <%= render 'card_header', event: event, show_link: true %>
+  
+  <%= render 'common/row_divider' %>
+  
+  <%= render 'gmaps', event: event %>
+  
+  <div class="row">
+    <div class="col-md-12 event-card-description">
+      <p class="text-muted">
+        <% if event.description.blank? %>
+        No description
+        <% else %>
+        <%= event.description %>
+        <% end %>
+      </p>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-12 text-right text-success">
+      <em>Event <%= relative_word_time event.datetime %></em>
+    </div>
+  </div>
+  
+  <%= render 'common/row_divider' %>
+  
+  <%= render 'card_attendance', event: event %>
+  
+  <%= render 'common/row_divider' %>
+  
+  <%= render 'card_invite', event: event %>
+  
+</div>

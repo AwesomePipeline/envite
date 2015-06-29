@@ -9,6 +9,8 @@
         <li class="list-group-item">Email: tester3@example.com, Password: 12345678</li>
       </ul>
     </div>
-    <%= link_to 'All Events', events_path, class: 'btn btn-primary', role: 'button' %>
+    <%= link_to 'Create Event', new_event_path, class: 'btn btn-success', role: 'button' %>
+    <%= link_to 'My Events', user_events_path, class: 'btn btn-primary', role: 'button' %>
+    <%= link_to 'My Notifications', user_notifications_path, class: 'btn btn-warning', role: 'button' %>
   </div>
 </div>

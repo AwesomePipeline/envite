@@ -1,0 +1,28 @@
+<div class="col-md-12">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <strong><%= notification.event.user.fullname %></strong> 
+      (@<%= notification.event.user.handle %>) invited you to 
+      <%= link_to notification.event.activity, event_path(notification.event) %> 
+      <strong><%= relative_word_time notification.event.datetime %></strong> at 
+      <strong><%= notification.event.location %></strong>.
+    </div>
+    <ul class="list-group btn-group btn-group-justified" role="group">
+      <%= accept_link_helper notification %>
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Suggest
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><%= link_to 'Do Something Else', suggest_activity_notification_path(notification) %></li>
+          <li role="separator" class="divider"></li>
+          <li><%= link_to 'Another Date / Time', suggest_datetime_notification_path(notification) %></li>
+          <li role="separator" class="divider"></li>
+          <li><%= link_to 'Different Location', suggest_location_notification_path(notification) %></li>
+        </ul>
+      </div>
+      <%= decline_link_helper notification %>
+    </ul>
+  </div>
+</div>

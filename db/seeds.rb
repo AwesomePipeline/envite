@@ -15,29 +15,29 @@ admin.password = "12345678"
 admin.password_confirmation = "12345678"
 admin.save!
 
-admin = User.new
-admin.fullname = "Tester 1"
-admin.handle = "tester1"
-admin.email = "tester1@example.com"
-admin.admin = false
-admin.password = "12345678"
-admin.password_confirmation = "12345678"
-admin.save!
+tester1 = User.new
+tester1.fullname = "Tester 1"
+tester1.handle = "tester1"
+tester1.email = "tester1@example.com"
+tester1.admin = false
+tester1.password = "12345678"
+tester1.password_confirmation = "12345678"
+tester1.save!
 
-admin = User.new
-admin.fullname = "Tester 2"
-admin.handle = "tester2"
-admin.email = "tester2@example.com"
-admin.admin = false
-admin.password = "12345678"
-admin.password_confirmation = "12345678"
-admin.save!
+tester2 = User.new
+tester2.fullname = "Tester 2"
+tester2.handle = "tester2"
+tester2.email = "tester2@example.com"
+tester2.admin = false
+tester2.password = "12345678"
+tester2.password_confirmation = "12345678"
+tester2.save!
 
-admin = User.new
-admin.fullname = "Tester 3"
-admin.handle = "tester3"
-admin.email = "tester3@example.com"
-admin.admin = false
-admin.password = "12345678"
-admin.password_confirmation = "12345678"
-admin.save!
+tester3 = User.new
+tester3.fullname = "Tester 3"
+tester3.handle = "tester3"
+tester3.email = "tester3@example.com"
+tester3.admin = false
+tester3.password = "12345678"
+tester3.password_confirmation = "12345678"
+tester3.save!

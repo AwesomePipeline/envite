@@ -31,3 +31,17 @@ en:
   # Userland messages
   
   event_create_error_host_mismatch:	'Invalid event data submitted'
+  
+  notification_create_success:		'Friend invited'
+  notification_create_error:		'Unable to invite friend'
+  notification_create_exists_error:	'Friend already invited'
+  
+  notification_accept_success:		'Event invitation accepted'
+  notification_reject_success:		'Event invitation declined'
+  
+  notification_suggest_success:		'Suggestion recorded'
+  notification_suggest_error:		'Invalid suggestion submitted'
+  notification_suggest_type_error:	'Invalid suggestion type'
+  
+  feedback_create_success:			'Thank you for submitting feedback!'
+  feedback_create_error:			'Something went wrong'

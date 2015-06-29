@@ -36,8 +36,13 @@
         <div id="navbar" class="collapse navbar-collapse">
         <% if current_user.try(:admin?) %>
           <ul class="nav navbar-nav">
+            <li class="active"><%= link_to 'Feedback', admin_feedbacks_path %></li>
             <li><%= link_to 'Events', admin_events_path %></li>
             <li><%= link_to 'Users', admin_users_path %></li>
+          </ul>
+        <% else %>
+          <ul class="nav navbar-nav">
+            <li class="active"><%= link_to 'Feedback', new_feedback_path %></li>
           </ul>
         <% end %>
           <ul class="nav navbar-nav navbar-right">
