@@ -5,8 +5,17 @@ Rails.application.routes.draw do
   root 'landing#index'
   
   # [PUBLIC] Feedback page
+  # ======================
   get '/feedbacks/new', to: 'feedbacks#new', as: 'new_feedback'
   post '/feedbacks', to: 'feedbacks#create', as: 'feedbacks'
+  
+  # [API-AUTH] API routing
+  namespace :api, defaults: {format: :json} do
+    namespace :v1 do
+      get '/events/index.json', to: 'events#index'
+      get '/events/:id/show.json', to: 'events#show'
+    end
+  end
   
   # [AUTH] Devise authentication setup
   # ==================================
@@ -22,10 +31,8 @@ Rails.application.routes.draw do
     get '/feedbacks', to: 'feedbacks#index', as: 'feedbacks'
   end
   
-  # [TEMP]
-  # resources :events
-  
   # [AUTH] Routing to create notifications when inviting friends
+  # ============================================================
   authenticate :user do
     # Creating new events
     post '/events', to: 'events#create', as: 'events'
@@ -52,6 +59,14 @@ Rails.application.routes.draw do
     # Creating messages
     get '/events/:id/:tab', to: 'events#show'
     post '/events/:id/messages', to: 'messages#create', as: 'messages'
+    
+    # User's events and notifications
+    scope '/user' do
+      get '/events', to: 'events#user_index', as: 'user_events'
+      get '/events/:id', to: 'events#show'
+      get '/notifications', to: 'notifications#user_index', as: 'user_notifications'
+      get '/profile', to: 'users#show'
+    end
   end
   
   # [PUBLIC] Routing for login and user management
@@ -73,16 +88,5 @@ Rails.application.routes.draw do
     get '/user/reset_password/reset', to: 'devise/passwords#edit', as: 'edit_user_password'
     put '/user/reset_password', to: 'devise/passwords#update', as: 'user_password'
     post '/user/reset_password', to: 'devise/passwords#create'
-  end
-  
-  # [AUTH] Routing for User's events and notifications
-  # ==================================================
-  scope '/user' do
-    authenticate :user do
-      get '/events', to: 'events#user_index', as: 'user_events'
-      get '/events/:id', to: 'events#show'
-      get '/notifications', to: 'notifications#user_index', as: 'user_notifications'
-      get '/profile', to: 'users#show'
-    end
   end
 end
