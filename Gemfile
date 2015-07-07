@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.1.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
@@ -29,7 +30,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Add simplecov gem
-gem 'simplecov', :require => false, :group => :test
+gem 'simplecov', require: false, group: :test
 
 # Add coveralls.io gem
 gem 'coveralls', require: false
@@ -52,6 +53,7 @@ group :development do
 end
 
 group :production do
+  gem 'rails_12factor'
   gem 'thin'
   gem 'pg'
 end

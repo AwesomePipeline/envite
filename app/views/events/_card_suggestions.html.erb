@@ -8,10 +8,10 @@
   <% if notification.has_suggested_activity? %>
     <%= render 'card_suggestion', notification: notification, type: :activity %>
   <% end %>
-  <% if notification.has_suggested_activity? %>
+  <% if notification.has_suggested_datetime? %>
     <%= render 'card_suggestion', notification: notification, type: :datetime %>
   <% end %>
-  <% if notification.has_suggested_activity? %>
+  <% if notification.has_suggested_location? %>
     <%= render 'card_suggestion', notification: notification, type: :location %>
   <% end %>
   <% end %>
