@@ -1,0 +1,1 @@
+json.(@event, :id, :activity, :location, :datetime, :host, :created_at)
