@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  # [AUTH] Devise authentication setup
+  # ==================================
+  # devise_for :users, skip: [:sessions, :passwords, :confirmations, :registrations, :unlocks]
+  devise_for :users, skip: [:sessions, :passwords, :confirmations, :registrations, :unlocks], controllers: {sessions: 'sessions', registrations: 'registrations'}
   
   # [PUBLIC] Landing page
   # =====================
@@ -12,15 +16,19 @@ Rails.application.routes.draw do
   # [API-AUTH] API routing
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
-      get '/events/index.json', to: 'events#index'
-      get '/events/:id/show.json', to: 'events#show'
+      get '/events', to: 'events#index'
+      get '/events/:id', to: 'events#show'
     end
   end
   
-  # [AUTH] Devise authentication setup
-  # ==================================
-  # devise_for :users, skip: [:sessions, :passwords, :confirmations, :registrations, :unlocks]
-  devise_for :users, skip: [:sessions, :passwords, :confirmations, :registrations, :unlocks]
+  # [API-AUTH] API Authentication routing
+  devise_scope :user do
+    scope :api, defaults: {format: :json} do
+      # Sessions [API]
+      post '/auth', to: 'sessions#create'
+      delete '/auth', to: 'sessions#destroy'
+    end
+  end
   
   # [ADMIN] Routing for admin pages
   # ===============================
@@ -72,10 +80,10 @@ Rails.application.routes.draw do
   # [PUBLIC] Routing for login and user management
   # ==============================================
   devise_scope :user do
-    # Sessions
+    # Sessions [HTML]
     get '/login', to: 'devise/sessions#new', as: 'new_user_session'
     post '/login', to: 'devise/sessions#create', as: 'user_session'
-    get '/logout', to: 'devise/sessions#destroy', as: 'destroy_user_session'
+    delete '/logout', to: 'devise/sessions#destroy', as: 'destroy_user_session'
     
     # Registrations
     get '/signup', to: 'devise/registrations#new', as: 'new_user_registration'
