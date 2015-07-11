@@ -12,6 +12,16 @@ class Event < ActiveRecord::Base
   validate :is_valid_datetime
   validate :is_valid_host
   
+  def invited
+    invited = Notification.where(event: self)
+    User.find(invited.pluck(:id))
+  end
+  
+  def accepted
+    accepted = Notification.where(event: self, has_accepted: true)
+    User.find(accepted.pluck(:id))
+  end
+  
   private
     # Custom Validation
     # =================

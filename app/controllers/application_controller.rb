@@ -28,4 +28,16 @@ class ApplicationController < ActionController::Base
       u.permit(:fullname, :handle, :password, :password_confirmation, :current_password)
     end
   end
+  
+  private
+  
+  def authenticate_user_from_token!
+    user_email = params[:email]
+    user = user_email && User.find_by_email(user_email)
+    logger.info "user: " + user.inspect
+    if user && Devise.secure_compare(user.auth_token, params[:auth_token])
+      sign_in user, store: false
+      user.new_token
+    end
+  end
 end
