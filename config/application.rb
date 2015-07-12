@@ -24,5 +24,10 @@ module TestApp
     config.active_record.raise_in_transactional_callbacks = true
     
     config.assets.paths << Rails.root.join("vendor", "assets", "fonts")
+
+    config.action_dispatch.default_headers = {
+        'Access-Control-Allow-Origin' => '*',
+        'Access-Control-Request-Method' => 'GET, PATCH, PUT, POST, OPTIONS, DELETE'
+    }
   end
 end
