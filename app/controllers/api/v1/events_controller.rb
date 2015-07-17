@@ -4,7 +4,7 @@ class Api::V1::EventsController < EventsController
   respond_to :json
   
   def index
-    @events = Event.all;
+    @events = Event.all
     respond_with @events
   end
   

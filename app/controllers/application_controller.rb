@@ -32,12 +32,11 @@ class ApplicationController < ActionController::Base
   private
   
   def authenticate_user_from_token!
-    user_email = params[:email]
-    user = user_email && User.find_by_email(user_email)
-    logger.info "user: " + user.inspect
+    username = params[:username]
+    user = username && User.find_by_username(username)
+    logger.info "[ApplicationController] Logging in user: " + user.inspect
     if user && Devise.secure_compare(user.auth_token, params[:auth_token])
-      sign_in user, store: false
-      user.new_token
+      sign_in user
     end
   end
 end

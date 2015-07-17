@@ -14,13 +14,7 @@ class User < ActiveRecord::Base
   # Validation Rules
   # ================
   validates :fullname, presence: true
-  validates :handle, presence: true,  uniqueness: true,
-   length: {within: 5..12}
-  
-  # Validating the email address with a regex
-  # TODO: More robust email validator?
-  validates :email, presence: true, uniqueness: true,
-    format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}
+  validates :username, presence: true,  uniqueness: true, length: {within: 5..12}
   
   def ensure_auth_token
     if auth_token.blank?
