@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  
   # Model Relationships
   # ===================
   has_many :events, foreign_key: :host
@@ -13,8 +14,16 @@ class User < ActiveRecord::Base
     
   # Validation Rules
   # ================
-  validates :fullname, presence: true
   validates :username, presence: true,  uniqueness: true, length: {within: 5..12}
+  
+  # Override Devise default email authentication key
+  def email_required?
+    false
+  end
+  
+  def email_changed?
+    false
+  end
   
   def ensure_auth_token
     if auth_token.blank?

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # ==================================
   # devise_for :users, skip: [:sessions, :passwords, :confirmations, :registrations, :unlocks]
   devise_for :users, skip: [:sessions, :passwords, :confirmations, :registrations, :unlocks], controllers: {sessions: 'sessions', registrations: 'registrations'}
+  resources :users
   
   # [PUBLIC] Landing page
   # =====================
@@ -24,9 +25,12 @@ Rails.application.routes.draw do
   # [API-AUTH] API Authentication routing
   devise_scope :user do
     scope :api, defaults: {format: :json} do
-      # Sessions [API]
+      # Sessions
       post '/auth', to: 'sessions#create'
       delete '/auth', to: 'sessions#destroy'
+      
+      # Registrations
+      post '/users', to: 'registrations#create'
     end
   end
   

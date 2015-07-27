@@ -1,6 +1,4 @@
 class EventsController < ApplicationController
-  protect_from_forgery with: :exception
-  respond_to :html
   
   def user_index
     @events = Event.where(host: current_user.id)
