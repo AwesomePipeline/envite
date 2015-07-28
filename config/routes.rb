@@ -14,23 +14,21 @@ Rails.application.routes.draw do
   get '/feedbacks/new', to: 'feedbacks#new', as: 'new_feedback'
   post '/feedbacks', to: 'feedbacks#create', as: 'feedbacks'
   
-  # [API-AUTH] API routing
+  # [API-AUTH-V1] API V1 Routing
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
-      get '/events', to: 'events#index'
-      get '/events/:id', to: 'events#show'
-    end
-  end
-  
-  # [API-AUTH] API Authentication routing
-  devise_scope :user do
-    scope :api, defaults: {format: :json} do
-      # Sessions
-      post '/auth', to: 'sessions#create'
-      delete '/auth', to: 'sessions#destroy'
+      # API Authentication
+      devise_scope :user do
+        # Sessions (aka Login)
+        post '/auth', to: 'sessions#create'
+        
+        # Registrations (aka Signup)
+        post '/users', to: 'registrations#create'
+      end
       
-      # Registrations
-      post '/users', to: 'registrations#create'
+      # Events
+      get '/events/:id', to: 'events#show'
+      get '/user/events', to: 'events#user_index'
     end
   end
   

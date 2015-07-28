@@ -31,14 +31,22 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  private
-  
+  # Authenticates the user from token obtained via API authentication
   def authenticate_user_from_token!
-    username = params[:username]
-    user = username && User.find_by_username(username)
-    logger.info "[ApplicationController] Logging in user: " + user.inspect
-    if user && Devise.secure_compare(user.auth_token, params[:auth_token])
-      sign_in user
+    logger.info "authenticating user"
+    authenticate_with_http_token do |token, options|
+      username = options[:username].presence
+      user = username && User.find_by_username(username)
+      logger.info "username: " + username
+      logger.info "user: " + user.inspect
+      logger.info "token: " + token
+      logger.info "user_token: " + user.auth_token
+      if user && Devise.secure_compare(user.auth_token, token)
+        sign_in user, store: false
+        logger.info "current_user: " + current_user.inspect
+      else
+        logger.error "login failed"
+      end
     end
   end
 end

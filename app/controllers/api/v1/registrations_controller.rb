@@ -1,6 +1,6 @@
-# app/controllers/registrations_controller.rb
+# app/controllers/api/v1/registrations_controller.rb
 
-class RegistrationsController < Devise::RegistrationsController
+class Api::V1::RegistrationsController < Devise::RegistrationsController
   respond_to :json
   
   def create
