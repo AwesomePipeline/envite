@@ -27,8 +27,8 @@ Rails.application.routes.draw do
       end
       
       # Events
-      get '/events/:id', to: 'events#show'
-      get '/user/events', to: 'events#user_index'
+      match '/events/:id', to: 'events#show', via: [:get, :options]
+      match '/user/events', to: 'events#user_index', via: [:get, :options]
     end
   end
   
