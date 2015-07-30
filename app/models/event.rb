@@ -1,4 +1,6 @@
 class Event < ActiveRecord::Base
+  before_save :set_uuid
+  
   # Model Relationships
   # ===================
   belongs_to :user, :foreign_key => :host
@@ -8,7 +10,6 @@ class Event < ActiveRecord::Base
   validates :activity, presence: true
   validates :datetime, presence: true
   validates :location, presence: true
-  validates :host, presence: true
   validate :is_valid_datetime
   validate :is_valid_host
   
@@ -23,6 +24,11 @@ class Event < ActiveRecord::Base
   end
   
   private
+  
+  def set_uuid
+    self.id = SecureRandom.hex(24)
+  end
+  
     # Custom Validation
     # =================
     def is_valid_datetime

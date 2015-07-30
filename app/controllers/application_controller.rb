@@ -52,15 +52,25 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  rescue_from(ActionController::ParameterMissing) do |e|
+    error = {}
+    error[e.param] = ["parameter is missing"]
+    response = {errors: [error]}
+    respond_to do |format|
+      format.json {render json: response, status: :unprocessable_entity}
+    end
+  end
+  
   def cors_set_access_control_headers
     headers['Access-Control-Allow-Origin'] = '*'
     headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, DELETE, OPTIONS'
-    headers['Access-Control-Allow-Headers'] = 'Origin, Content-Type, Accept, Authorization, Token'
+    headers['Access-Control-Allow-Headers'] = 'Access-Control-Allow-Origin, Content-Type, Accept, Authorization, Token'
     headers['Access-Control-Max-Age'] = "1728000"
   end
 
   def cors_preflight_check
     if request.method == 'OPTIONS'
+      logger.info "handling CORS pre-flight"
       headers['Access-Control-Allow-Origin'] = '*'
       headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, DELETE, OPTIONS'
       headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-Prototype-Version, Token'

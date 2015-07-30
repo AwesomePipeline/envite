@@ -17,4 +17,25 @@ class Api::V1::EventsController < EventsController
       render nothing: true, status: :not_found
     end
   end
+  
+  def create
+    @event = Event.new(event_params)
+    if @event.save
+      respond_with @event
+    else
+      render json: {errors: @event.errors}, status: :unprocessable_entity
+    end
+  end
+  
+  protected
+  
+  def event_params
+    params[:event].merge!(host: current_user.id)
+    params.require(:event).permit(
+      :activity,
+      :datetime,
+      :location,
+      :description
+    )
+  end
 end
