@@ -11,7 +11,6 @@ class Event < ActiveRecord::Base
   validates :datetime, presence: true
   validates :location, presence: true
   validate :is_valid_datetime
-  validate :is_valid_host
   
   def invited
     invited = Notification.where(event: self)
@@ -29,19 +28,11 @@ class Event < ActiveRecord::Base
     self.id = SecureRandom.hex(24)
   end
   
-    # Custom Validation
-    # =================
-    def is_valid_datetime
-      if datetime.present? && datetime < DateTime.now
-        errors.add(:datetime, "cannot be in the past")
-      end
+  # Custom Validation
+  # =================
+  def is_valid_datetime
+    if datetime.present? && datetime < DateTime.now
+      errors.add(:datetime, "cannot be in the past")
     end
-    
-    def is_valid_host
-      begin
-        User.find(host)
-      rescue ActiveRecord::RecordNotFound
-        errors.add(:host, "does not exist")
-      end
-    end
+  end
 end

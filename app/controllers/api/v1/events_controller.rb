@@ -35,7 +35,8 @@ class Api::V1::EventsController < EventsController
       :activity,
       :datetime,
       :location,
-      :description
+      :description,
+      :host
     )
   end
 end
