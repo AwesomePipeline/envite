@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       # Events
       match '/events', to: 'events#create', via: [:post, :options]
       match '/events/:id', to: 'events#show', via: [:get, :options]
+      match '/events/:id', to: 'events#update', via: [:patch]
       match '/user/events', to: 'events#user_index', via: [:get, :options]
     end
   end

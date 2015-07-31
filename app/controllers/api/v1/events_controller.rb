@@ -12,7 +12,6 @@ class Api::V1::EventsController < EventsController
   def show
     begin
       @event = Event.find(params[:id])
-      respond_with @event
     rescue ActiveRecord::RecordNotFound
       render nothing: true, status: :not_found
     end
@@ -20,10 +19,19 @@ class Api::V1::EventsController < EventsController
   
   def create
     @event = Event.new(event_params)
-    if @event.save
-      respond_with @event
-    else
+    if !@event.save
       render json: {errors: @event.errors}, status: :unprocessable_entity
+    end
+  end
+  
+  def update
+    begin
+      @event = Event.find(params[:id])
+      if !@event.update(event_params)
+        render json: {errors: @event.errors}, status: :unprocessable_entity
+      end
+    rescue ActiveRecord::RecordNotFound
+      render nothing: true, status: :not_found
     end
   end
   

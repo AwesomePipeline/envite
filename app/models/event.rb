@@ -1,6 +1,9 @@
 class Event < ActiveRecord::Base
   before_save :set_uuid
   
+  # Non-integer primary key
+  self.primary_key = :id
+  
   # Model Relationships
   # ===================
   belongs_to :user, :foreign_key => :host
@@ -25,7 +28,7 @@ class Event < ActiveRecord::Base
   private
   
   def set_uuid
-    self.id = SecureRandom.hex(24)
+    self.id ||= SecureRandom.hex(24)
   end
   
   # Custom Validation
