@@ -9,6 +9,11 @@ class Api::V1::EventsController < EventsController
     @events = Event.where(host: current_user.id)
   end
   
+  def user_invited_index
+    notifications = Notification.where(target: current_user.id)
+    @events = Event.where(id: notifications.pluck(:event_id))
+  end
+  
   def show
     begin
       @event = Event.find(params[:id])

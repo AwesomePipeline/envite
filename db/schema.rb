@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150730102029) do
+ActiveRecord::Schema.define(version: 20150731153655) do
 
   create_table "events", id: false, force: :cascade do |t|
     t.string   "id"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20150730102029) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.integer  "event_id",                               null: false
+    t.string   "event_id",                               null: false
     t.integer  "target",                                 null: false
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
