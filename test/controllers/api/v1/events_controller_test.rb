@@ -5,7 +5,7 @@ class Api::V1::EventsControllerTest < ActionController::TestCase
   
   test "event create route unauthorized" do
     @request.env["devise.mapping"] = Devise.mappings[:user]
-    post :create
+    post :create, format: :json
     assert_response :unauthorized
   end
   
