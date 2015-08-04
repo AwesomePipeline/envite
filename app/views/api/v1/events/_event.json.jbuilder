@@ -5,7 +5,7 @@ json.(
   :location,
   :datetime,
   :description,
-  :host,
   :created_at,
   :updated_at
 )
+json.host event.user
