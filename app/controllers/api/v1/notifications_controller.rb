@@ -1,6 +1,6 @@
 # app/controllers/api/v1/notifications_controller.rb
 
-class Api::V1::NotificationsController < NotificationsController
+class Api::V1::NotificationsController < ApplicationController
   before_filter :authenticate_user_from_token!
   before_filter :authenticate_user!
   respond_to :json

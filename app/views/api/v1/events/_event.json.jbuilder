@@ -8,4 +8,6 @@ json.(
   :created_at,
   :updated_at
 )
-json.host event.user
+json.host do
+  json.partial! 'api/v1/users/user_basic', user: event.user
+end

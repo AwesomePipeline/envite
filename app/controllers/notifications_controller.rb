@@ -1,6 +1,4 @@
 class NotificationsController < ApplicationController
-  protect_from_forgery with: :exception
-  respond_to :html
   
   def user_index  
     @notifications = Notification.where(target: current_user.id)
