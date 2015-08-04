@@ -30,7 +30,7 @@ Rails.application.routes.draw do
       match '/user/events', to: 'events#create', via: [:post, :options]
       match '/user/events/invited', to: 'events#user_invited_index', via: [:get, :options]
       match '/user/events/:id', to: 'events#show', via: [:get, :options]
-      match '/user/events/:id', to: 'events#update', via: [:patch]
+      match '/user/events/:id', to: 'events#update', via: [:put]
       match '/user/events', to: 'events#user_index', via: [:get, :options]
       
       # Notifications

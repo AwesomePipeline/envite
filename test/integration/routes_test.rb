@@ -30,8 +30,8 @@ class RoutesTest < ActionDispatch::IntegrationTest
       id: '12345'
     }, {
       path: 'api/v1/user/events/12345',
-      method: 'patch'
-    }, nil, '[route] API PATCH Update Event')
+      method: 'put'
+    }, nil, '[route] API PUT Update Event')
     
     assert_recognizes({
       format: :json,
