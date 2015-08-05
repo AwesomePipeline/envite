@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  respond_to :html
   
   def user_index
     @events = Event.where(host: current_user.id)

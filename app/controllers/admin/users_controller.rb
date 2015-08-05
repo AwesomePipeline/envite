@@ -1,4 +1,4 @@
-class Admin::UsersController < UsersController
+class Admin::UsersController < ApplicationController
   protect_from_forgery with: :exception
   respond_to :html
   before_filter :check_user_admin
@@ -53,14 +53,14 @@ class Admin::UsersController < UsersController
   end
   
   private
-      
-    def check_user_admin
-      if current_user.try(:admin?)
-        # Allow action
-      else
-        flash[:error] = t(:auth_not_authorized_view)
-        redirect_to new_user_session_path
-      end
+  
+  def check_user_admin
+    if current_user.try(:admin?)
+      # Allow action
+    else
+      flash[:error] = t(:auth_not_authorized_view)
+      redirect_to new_user_session_path
     end
-    
+  end
+  
 end

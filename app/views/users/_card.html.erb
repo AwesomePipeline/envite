@@ -1,21 +1,21 @@
 <div class="card">
-  <%= render 'avatar' %>
+  <%= render 'users/avatar', user: user %>
   
   <div class="content">
     <canvas class="header-bg" width="250" height="70"></canvas>
     <p>
-      <%= @user.fullname %><br>
-      @<%= @user.handle %>
+      <%= user.fullname %><br>
+      @<%= user.username %>
     </p>
     <p><%= link_to 'Profile', '', class: 'btn btn-default', role: 'button' %></p>
   </div>
   <div class="list-group">
-  <% if @events.empty? %>
+  <% if events.empty? %>
     <div class="list-group-item">
       No recent events
     </div>
   <% end %>
-  <% @events.each do |event| %>
+  <% events.each do |event| %>
     <%= link_to event.activity, event_path(event), class: 'list-group-item' %>
   <% end %>
   </div>
