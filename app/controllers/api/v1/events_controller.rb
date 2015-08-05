@@ -40,6 +40,16 @@ class Api::V1::EventsController < EventsController
     end
   end
   
+  def responses
+    begin
+      @event = Event.find(params[:id])
+      @accepted = User.find(Notification.where(event: @event, has_responded: true, has_accepted: true).pluck(:id))
+      @rejected = User.find(Notification.where(event: @event, has_responded: true, has_accepted: false).pluck(:id))
+    rescue ActiveRecord::RecordNotFound
+      render nothing: true, status: :not_found
+    end
+  end
+  
   protected
   
   def event_params

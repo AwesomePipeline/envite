@@ -3,8 +3,8 @@ class Notification < ActiveRecord::Base
   # ===================
   belongs_to :event
   belongs_to :user, foreign_key: :target
-  validate :check_event_id
-  validate :check_duplicate
+  validate :check_event_id, on: [:create]
+  validate :check_duplicate, on: [:create]
   
   def check_event_id
     logger.info "event: " + event.inspect

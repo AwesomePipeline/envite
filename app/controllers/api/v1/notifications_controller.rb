@@ -18,7 +18,7 @@ class Api::V1::NotificationsController < ApplicationController
     set_response 'accept'
   end
   
-  def decline
+  def reject
     set_response 'reject'
   end
   
@@ -28,17 +28,9 @@ class Api::V1::NotificationsController < ApplicationController
   
   private
   
-  def get_notification
-    begin
-      @notification = Notification.where(target: current_user.id, event_id: params[:id])
-    rescue ActiveRecord::RecordNotFound
-      render nothing: true, status: :not_found
-    end
-  end
-  
   def set_response response_type
     begin
-      @notification = Notification.where(target: current_user.id, event_id: params[:id])
+      @notification = Notification.where(target: current_user.id, event_id: params[:id]).first
     rescue ActiveRecord::RecordNotFound
       render nothing: true, status: :not_found
     end
