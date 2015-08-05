@@ -2,8 +2,7 @@
   <tr>
     <th>ID</th>
     <th>Fullname</th>
-    <th>Handle</th>
-    <th>Email</th>
+    <th>Username</th>
     <th>Admin</th>
     <th>Hosted Events</th>
     <th class="text-center" colspan="3">Actions</th>
@@ -13,8 +12,7 @@
     <tr>
       <td><%= user.id %></td>
       <td><%= user.fullname %></td>
-      <td><%= user.handle %></td>
-      <td><%= user.email %></td>
+      <td><%= user.username %></td>
       <td><%= user.admin? ? "&#10003;".html_safe : "&#10007;".html_safe %></td>
       <td><%= user.events.count %></td>
       <td><%= link_to 'Show', admin_user_path(user), class: "btn btn-primary", role: "button" %></td>

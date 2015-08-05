@@ -1,0 +1,24 @@
+<table class="table table-striped">
+  <tr>
+    <th>Activity</th>
+    <th>Date & Time</th>
+    <th>Location</th>
+    <th>Description</th>
+    <th>Host</th>
+    <th class="text-center" colspan="3">Actions</th>
+  </tr>
+  
+  <% @events.each do |event| %>
+    <tr>
+      <td><%= event.activity %></td>
+      <td><%= event.datetime %></td>
+      <td><%= event.location %></td>
+      <td><%= event.description %></td>
+      <td><%= event.user.username %></td>
+      <td><%= link_to 'Show', event_path(event), class: 'btn btn-primary', role: 'button' %></td>
+      <td><%= link_to 'Edit', edit_event_path(event), class: 'btn btn-primary', role: 'button' %></td>
+      <td><%= link_to 'Destroy', event_path(event), method: :delete,
+      data: {confirm: 'Are you sure?'}, class: 'btn btn-danger', role: 'button' %></td>
+    </tr>
+  <% end %>
+</table>

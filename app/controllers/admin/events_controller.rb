@@ -1,4 +1,5 @@
 class Admin::EventsController < EventsController
+  respond_to :html
   
   def index
     @events = Event.all
@@ -7,9 +8,7 @@ class Admin::EventsController < EventsController
   
   def new
     @event = Event.new
-    @users = User.all
-    
-    render 'events/new'
+    respond_with(@event)
   end
   
 end
