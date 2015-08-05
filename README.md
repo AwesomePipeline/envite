@@ -73,8 +73,8 @@ The level of achievement that we are aiming for with this project is Apollo 11. 
 * [ ] Log at least 130 hours each: [link](https://docs.google.com/spreadsheets/d/1dOT-cn-uX3mZf6EYptsL-psYxPBt36Sn5GNuU_TkWU4/edit?usp=sharing)
 * [ ] Participate in Splashdown
 * [x] Create a basic web application with CRUD capabilities
-* [ ] Complete peer-evaluation exercises
-* [ ] Show progress over all 3 milestones
+* [x] Complete peer-evaluation exercises
+* [x] Show progress over all 3 milestones
 
 ### Gemini
 * [x] Using alternative platform: Ruby on Rails (completed Milestone 1)
@@ -84,8 +84,9 @@ The level of achievement that we are aiming for with this project is Apollo 11. 
 
 ### Apollo 11
 * [x] Use some form of version control: Git/GitHub
-* [ ] Technical extension: Unit testing (tentatively Milestones ~~2 &~~ 3)
-* [ ] Technical extension: Use of transactions and ensuring referential integrity in database storage (tentatively Milestone ~~2~~ 3)
+* [x] Technical extension: Unit testing (completed Milestones ~~2 &~~ 3)
+* [x] Technical extension: Use of transactions and ensuring referential integrity in database storage (completed Milestone ~~2~~ 3)
+* [x] Technical extension: Separate front and back end into Client-API model (completed milestone 3)
 * [ ] Score at least 3 stars out of 4 on feedback and evaluations
 
 ## Milestones
