@@ -36,8 +36,8 @@ Rails.application.routes.draw do
       
       # Notifications
       match '/events/:id/notification', to: 'notifications#create', via: [:get, :options]
-      get '/events/:id/accept', to: 'notifications#accept'
-      get '/events/:id/reject', to: 'notifications#reject'
+      match '/events/:id/accept', to: 'notifications#accept', via: [:get, :options]
+      match '/events/:id/reject', to: 'notifications#reject', via: [:get, :options]
       match '/events/:id/suggest', to: 'notifications#suggest', via: [:post, :options]
     end
   end
