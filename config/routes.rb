@@ -23,7 +23,7 @@ Rails.application.routes.draw do
         post '/auth', to: 'sessions#create'
         
         # Registrations (aka Signup)
-        post '/users', to: 'registrations#create'
+        match '/users', to: 'registrations#create', via: [:post, :options]
       end
       
       # Events
