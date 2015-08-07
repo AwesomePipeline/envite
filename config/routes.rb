@@ -20,7 +20,7 @@ Rails.application.routes.draw do
       # API Authentication
       devise_scope :user do
         # Sessions (aka Login)
-        post '/auth', to: 'sessions#create'
+        match '/auth', to: 'sessions#create', via: [:post, :options]
         
         # Registrations (aka Signup)
         match '/users', to: 'registrations#create', via: [:post, :options]
@@ -32,7 +32,7 @@ Rails.application.routes.draw do
       match '/user/events/:id', to: 'events#show', via: [:get, :options]
       match '/user/events/:id', to: 'events#update', via: [:put]
       match '/user/events', to: 'events#user_index', via: [:get, :options]
-      get '/events/:id/responses', to: 'events#responses'
+      match '/events/:id/responses', to: 'events#responses', via: [:get, :options]
       
       # Notifications
       match '/events/:id/notification', to: 'notifications#create', via: [:get, :options]
