@@ -1,0 +1,9 @@
+json.(
+  user,
+  :id,
+  :fullname,
+  :username,
+  :auth_token,
+  :created_at,
+  :updated_at
+)

@@ -24,6 +24,8 @@ Rails.application.routes.draw do
         
         # Registrations (aka Signup)
         match '/users', to: 'registrations#create', via: [:post, :options]
+        match '/user', to: 'registrations#show', via: [:get, :options]
+        match '/user', to: 'registrations#update', via: [:put]
       end
       
       # Events
@@ -38,7 +40,10 @@ Rails.application.routes.draw do
       match '/events/:id/notification', to: 'notifications#create', via: [:get, :options]
       match '/events/:id/accept', to: 'notifications#accept', via: [:get, :options]
       match '/events/:id/reject', to: 'notifications#reject', via: [:get, :options]
-      match '/events/:id/suggest', to: 'notifications#suggest', via: [:post, :options]
+      # match '/events/:id/suggest', to: 'notifications#suggest', via: [:post, :options]
+      match '/events/:id/suggest_activity', to: 'notifications#suggest_activity', via: [:post, :options]
+      match '/events/:id/suggest_location', to: 'notifications#suggest_location', via: [:post, :options]
+      match '/events/:id/suggest_datetime', to: 'notifications#suggest_datetime', via: [:post, :options]
     end
   end
   

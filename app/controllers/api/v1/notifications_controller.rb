@@ -26,6 +26,18 @@ class Api::V1::NotificationsController < ApplicationController
     set_response params[:notification][:suggest_type]
   end
   
+  def suggest_activity
+    set_response 'activity'
+  end
+  
+  def suggest_location
+    set_response 'location'
+  end
+  
+  def suggest_datetime
+    set_response 'datetime'
+  end
+  
   private
   
   def set_response response_type
