@@ -41,36 +41,35 @@ class Api::V1::NotificationsController < ApplicationController
   private
   
   def set_response response_type
-    begin
-      @notification = Notification.where(target: current_user.id, event_id: params[:id]).first
-    rescue ActiveRecord::RecordNotFound
+    @notification = Notification.where(target: current_user.id, event_id: params[:id]).first
+    if @notification
+      case response_type
+      when 'accept'
+        @notification.has_responded = true
+        @notification.has_accepted = true
+      when 'reject'
+        @notification.has_responded = true
+        @notification.has_accepted = false
+      when 'activity'
+        @notification.has_suggested_activity = true
+        @notification.suggested_activity = params[:notification][:suggested_activity]
+      when 'datetime'
+        @notification.has_suggested_datetime = true
+        @notification.suggested_datetime = datetime_from_params(params[:notification][:suggested_datetime])
+      when 'location'
+        @notification.has_suggested_location = true
+        @notification.suggested_location = params[:notification][:suggested_location]
+      else
+        render nothing: true, status: :unprocessable_entity
+      end
+      
+      if @notification.save
+        render nothing: true, status: :ok
+      else
+        render nothing: true, status: :unprocessable_entity
+      end
+    else
       render nothing: true, status: :not_found
-    end
-    
-    case response_type
-    when 'accept'
-      @notification.has_responded = true
-      @notification.has_accepted = true
-    when 'reject'
-      @notification.has_responded = true
-      @notification.has_accepted = false
-    when 'activity'
-      @notification.has_suggested_activity = true
-      @notification.suggested_activity = params[:notification][:suggested_activity]
-    when 'datetime'
-      @notification.has_suggested_datetime = true
-      @notification.suggested_datetime = datetime_from_params(params[:notification][:suggested_datetime])
-    when 'location'
-      @notification.has_suggested_location = true
-      @notification.suggested_location = params[:notification][:suggested_location]
-    else
-      render nothing: true, status: :unprocessable_entity
-    end
-    
-    if @notification.save
-      render nothing: true, status: :ok
-    else
-      render nothing: true, status: :unprocessable_entity
     end
   end
   
