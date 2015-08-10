@@ -16,5 +16,8 @@
 !/log/.keep
 /tmp
 
+# Ignore eclipse stuff
+.metadata/*
+
 # Ignore all coveralls stuff
 /coverage
