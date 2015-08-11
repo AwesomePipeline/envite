@@ -46,6 +46,9 @@ class Api::V1::EventsController < EventsController
       @accepted = User.find(Notification.where(event: @event, has_responded: true, has_accepted: true).pluck(:target))
       @rejected = User.find(Notification.where(event: @event, has_responded: true, has_accepted: false).pluck(:target))
       @not_responded = User.find(Notification.where(event: @event, has_responded: false).pluck(:target))
+      @suggested_activities = Notification.where(event: @event, has_suggested_activity: true).group_by(&:suggested_activity)
+      @suggested_locations = Notification.where(event: @event, has_suggested_location: true).group_by(&:suggested_location)
+      @suggested_datetimes = Notification.where(event: @event, has_suggested_datetime: true).group_by(&:suggested_datetime)
     rescue ActiveRecord::RecordNotFound
       render nothing: true, status: :not_found
     end
