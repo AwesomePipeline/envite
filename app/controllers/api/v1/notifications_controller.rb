@@ -55,7 +55,8 @@ class Api::V1::NotificationsController < ApplicationController
         @notification.suggested_activity = params[:notification][:suggested_activity]
       when 'datetime'
         @notification.has_suggested_datetime = true
-        @notification.suggested_datetime = datetime_from_params(params[:notification][:suggested_datetime])
+        # @notification.suggested_datetime = datetime_from_params(params[:notification][:suggested_datetime])
+        @notification.suggested_datetime = DateTime.strptime(params[:notification][:suggested_datetime], "%d/%m/%Y %H:%M:%S")
       when 'location'
         @notification.has_suggested_location = true
         @notification.suggested_location = params[:notification][:suggested_location]
