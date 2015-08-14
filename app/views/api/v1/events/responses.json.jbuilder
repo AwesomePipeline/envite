@@ -22,5 +22,5 @@ end
 
 json.suggested_datetimes @suggested_datetimes do |notification|
   json.partial! 'api/v1/users/user_basic', user: notification.user
-  json.set! :data, notification.suggested_datetime
+  json.set! :data, (notification.suggested_datetime - 8.hours)
 end
