@@ -2,7 +2,7 @@
 
 Envite is an app that aims to help people organise meet-ups between friends in a hassle-free manner. It aims to supplant the current practice of using Facebook events or instant messaging, which we feel is messy and slow.
 
-Access the app: [here](https://young-plains-4770.herokuapp.com/)
+Access the app: [here](http://http://enviteapp.herokuapp.com/)
 
 Project blog: [here](https://awesomepipeline.wordpress.com/)
 
